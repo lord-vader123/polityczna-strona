@@ -1,26 +1,43 @@
-body {
-    background-image: url(/assets/img/tlo.jpg); /*źródło obrazu: https://bi.im-g.pl/im/48/e8/1c/z30312520AMP,Sala-obrad-Sejmu-w-dzien-po-wyborach-.jpg */
-    background-repeat: no-repeat;
-    background-position: center ;
-    background-size: cover;
-    width: 100%;
-    height: 100vh;
-    padding: 0;
-    margin: 0;
-    backdrop-filter: blur(5px);
+
+/* wypisane tutaj elementy będą automatycznie ustawiały swój układ na wyśrodkowaną kolumnę */
+body, .content {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+body {
+    /* tło strony */
+    background-image: url(/assets/img/tlo.jpg); /*źródło obrazu: https://bi.im-g.pl/im/48/e8/1c/z30312520AMP,Sala-obrad-Sejmu-w-dzien-po-wyborach-.jpg */
+    background-repeat: no-repeat;
+    background-position: center ;
+    background-size: cover;
+    
+    /* rozmiary strony */
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    
+    /* rozmazanie tła */
+    backdrop-filter: blur(5px);
+    
+}
+
 header {
     width: 90%;
+    margin: 1vh;
     border: 2px solid black;
-    background-color: antiquewhite; /* kolorystyka jest koniecznie do zmiany */
+    background-color: #A2968D; /* kolorystyka jest koniecznie do zmiany */
     text-align: center;
     padding:3px;
 }
 
 a {
     padding: 8px;
+}
+
+.content {
+    background-color: #779191;
+
 }
