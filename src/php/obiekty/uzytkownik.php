@@ -1,7 +1,7 @@
 <?php
 
 // TRZEBA DODAĆ HASHOWANIE HASEŁ !!!!
-class Uzytkownik {
+class uzytkownik {
     // parametry
     private ?int $id;
     private string $imie, $nazwisko, $login, $haslo;
