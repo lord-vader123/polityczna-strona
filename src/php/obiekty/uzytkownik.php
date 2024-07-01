@@ -1,26 +1,29 @@
 <?php
 
 class Uzytkownik {
+    // parametry
     private ?int $id;
     private string $imie, $nazwisko, $login, $haslo;
     
-    public function __construct($imie = NULL, $nazwisko = NULL, $login = NULL, $haslo = NULL, $id = NULL, ?mysqli $conn = NULL) {
-        if ($id !== NULL && $conn === NULL) {
+    // konstruktor który w przypadku podania id wypełnia informacje danymi z bazy danych użytkownika o podanym id, w innym wypadku przypisuje dane podane w argumentach
+    public function __construct($imie = NULL, $nazwisko = NULL, $login = NULL, $haslo = NULL, $id = NULL, mysqli $conn) {
+        if ($id !== NULL && $conn !== NULL) {
             $this -> id = $id;
             $this -> imie = $imie;
             $this -> nazwisko = $nazwisko;
             $this -> login = $login;
             $this -> haslo = $haslo;
+            $this -> wyslijDoBazyDanych($conn);
         } elseif ($conn !== NULL && $id !== NULL) {
             $this -> pobierzDaneZBazyDanych($conn, $id);
-
        }
     }
     
+    // funkcja która wysyła parametry obiektu do bazy danych
     public function wyslijDoBazyDanych(mysqli $conn) {
         $query = "INSERT INTO Uzytkownicy (id_uzytkownika, imie_uzytkownika, nazwisko_uzytkownika, login_uzytkownika, haslo_uzytkownika) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn -> prepare($query);
-        $stmt -> bind_param("isss", $this -> $id, $this -> imie, $this -> nazwisko, $this -> login, $this -> haslo);
+        $stmt -> bind_param("issss", $this -> $id, $this -> imie, $this -> nazwisko, $this -> login, $this -> haslo);
 
         if ($stmt -> execute()) {
             echo "Pomyślnie dodano użytkownika!";
@@ -29,6 +32,7 @@ class Uzytkownik {
         }
     }
     
+    // funkcja która przypisuje do parametrów obiektu dane z bazy danych o podanym id 
     private function pobierzDaneZBazyDanych(mysqli $conn, int $id) {
         $query = "SELECT * FROM Uzytkownicy WHERE id_uzytkownika = ?";
         $stmt = $conn->prepare($query);
@@ -48,7 +52,6 @@ class Uzytkownik {
         }
     }
     
-
 }
 
 ?>
