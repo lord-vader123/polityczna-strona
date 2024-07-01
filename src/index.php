@@ -16,7 +16,12 @@
   <a href="/php/rejestracja.php">Zarejestruj się</a>
   </header>
 
-  
+  <div class="content">
+  <p>Aktualna ilość partii: </p>
+  <p>Aktualna ilość okręgów wyborczych: </p>
+  <p>Aktualna ilość polityków: </p>
+
+  </div>
 
 </body>
 
