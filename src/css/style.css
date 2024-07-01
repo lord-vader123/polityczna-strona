@@ -8,4 +8,19 @@ body {
     padding: 0;
     margin: 0;
     backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    width: 90%;
+    border: 2px solid black;
+    background-color: antiquewhite; /* kolorystyka jest koniecznie do zmiany */
+    text-align: center;
+    padding:3px;
+}
+
+a {
+    padding: 8px;
 }

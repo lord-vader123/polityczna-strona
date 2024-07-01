@@ -11,6 +11,12 @@
 
 <body>
 
+  <header>
+  <a href="/php/logowanie.php">Zaloguj się</a>
+  <a href="/php/rejestracja.php">Zarejestruj się</a>
+  </header>
+
+  
 
 </body>
 
