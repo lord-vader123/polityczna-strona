@@ -9,12 +9,20 @@ class polityk {
 
     public function __construct($imie, $nazwisko, $sciezka_do_obrazu, $id, $id_partii, $id_komitetu, $jest_poslem) {
         if ($id === NULL) {
-            //dodaj posła do bazy danych
+            // Dodaj posła do bazy danych
             return;
-        }        
-        $this -> $imie = $imie;
+        } else {
+            // Ustaw istniejące dane
+            $this->id = $id;
+            $this->id_partii = $id_partii;
+            $this->id_komitetu = $id_komitetu;
+            $this->jest_poslem = $jest_poslem;
+        }
+        
+        $this->imie = $imie;
+        $this->nazwisko = $nazwisko;
+        $this->sciezka_do_obrazu = $sciezka_do_obrazu;
     }
-    
 }
 
 ?>
