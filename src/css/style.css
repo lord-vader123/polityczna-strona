@@ -31,6 +31,7 @@ header {
     background-color: #A2968D; /* kolorystyka jest koniecznie do zmiany */
     text-align: center;
     padding:3px;
+    border-radius: 10px 0 10px 0; /* zakrzywienie krawędzi */
 }
 
 a {
@@ -38,6 +39,10 @@ a {
 }
 
 .content {
-    background-color: #779191;
+    background-color: #4E342E;
+    height: 80%;
+    padding: 4px;
+    color: white;
+
 
 }
