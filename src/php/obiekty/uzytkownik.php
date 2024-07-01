@@ -1,5 +1,6 @@
 <?php
 
+// TRZEBA DODAĆ HASHOWANIE HASEŁ !!!!
 class Uzytkownik {
     // parametry
     private ?int $id;
@@ -14,7 +15,7 @@ class Uzytkownik {
             $this -> login = $login;
             $this -> haslo = $haslo;
             $this -> wyslijDoBazyDanych($conn);
-        } elseif ($conn !== NULL && $id !== NULL) {
+        } elseif ($id !== NULL && $conn !== NULL) {
             $this -> pobierzDaneZBazyDanych($conn, $id);
        }
     }
