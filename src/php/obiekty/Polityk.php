@@ -20,7 +20,6 @@ class Polityk extends ElementBazy{
 
     }
     
-    
     protected function przypiszDane(array $dane): void {
         $this->id = $dane['id_polityka'];
         $this->imie = $dane['imie_polityka'];
