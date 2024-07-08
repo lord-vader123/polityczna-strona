@@ -4,24 +4,24 @@
 class uzytkownik {
     // parametry
     private ?int $id;
-    private string $imie, $nazwisko, $login, $haslo;
+    private ?string $imie, $nazwisko, $login, $haslo;
     
     // konstruktor który w przypadku podania id wypełnia informacje danymi z bazy danych użytkownika o podanym id, w innym wypadku przypisuje dane podane w argumentach
-    public function __construct($imie = NULL, $nazwisko = NULL, $login = NULL, $haslo = NULL, $id = NULL, mysqli $conn) {
-        if ($id !== NULL && $conn !== NULL) {
-            $this -> id = $id;
-            $this -> imie = $imie;
-            $this -> nazwisko = $nazwisko;
-            $this -> login = $login;
-            $this -> haslo = $haslo;
-            $this -> wyslijDoBazyDanych($conn);
-        } elseif ($id !== NULL && $conn !== NULL) {
+    public function __construct($id = NULL, $imie = NULL, $nazwisko = NULL, $login = NULL, $haslo = NULL, ?mysqli $conn = NULL)  {
+        if ($id !== NULL) {
             $this -> pobierzDaneZBazyDanych($conn, $id);
-       }
+            return;
+        }
+
+        $this -> id = $id;
+        $this -> imie = $imie;
+        $this -> nazwisko = $nazwisko;
+        $this -> login = $login;
+        $this -> haslo = $haslo;
     }
     
     // funkcja która wysyła parametry obiektu do bazy danych
-    public function wyslijDoBazyDanych(mysqli $conn) {
+    public function wyslijDoBazyDanych(mysqli $conn) : void {
         $query = "INSERT INTO Uzytkownicy (id_uzytkownika, imie_uzytkownika, nazwisko_uzytkownika, login_uzytkownika, haslo_uzytkownika) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn -> prepare($query);
         $stmt -> bind_param("issss", $this -> $id, $this -> imie, $this -> nazwisko, $this -> login, $this -> haslo);
@@ -31,10 +31,11 @@ class uzytkownik {
         } else {
             echo "Wystąpił błąd podczas dodawania użytkownika";
         }
+        $stmt -> close();
     }
     
     // funkcja która przypisuje do parametrów obiektu dane z bazy danych o podanym id 
-    private function pobierzDaneZBazyDanych(mysqli $conn, int $id) {
+    private function pobierzDaneZBazyDanych(mysqli $conn, int $id) : void {
         $query = "SELECT * FROM Uzytkownicy WHERE id_uzytkownika = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $id);
@@ -51,6 +52,9 @@ class uzytkownik {
         } else {
             echo "Nie znaleziono użytkownika o podanym ID";
         }
+        
+        $stmt -> close();
+        $reult -> close();
     }
     
 }
