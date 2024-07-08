@@ -41,7 +41,6 @@ class Uzytkownik extends ElementBazy {
         $this->nazwisko = $dane['nazwisko_uzytkownika'];
         $this->login = $dane['login_uzytkownika'];
         $this->haslo = $dane['haslo_uzytkownika'];
-        return;
     }
     
     // zwraca nazwe tabele w bazie danych mysql
