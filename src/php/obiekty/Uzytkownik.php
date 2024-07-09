@@ -1,9 +1,11 @@
 <?php
 
+require_once 'ElementBazy.php';
+
 // TRZEBA DODAĆ HASHOWANIE HASEŁ !!!!
 class Uzytkownik extends ElementBazy {
     // parametry
-    private ?int $id;
+    protected ?int $id;
     private ?string $imie, $nazwisko, $login, $haslo;
     
     // konstruktor który w przypadku podania id wypełnia informacje danymi z bazy danych użytkownika o podanym id, w innym wypadku przypisuje dane podane w argumentach

@@ -1,8 +1,10 @@
 <?php
 
+require_once 'ElementBazy.php';
+
 class Partia extends ElementBazy {
 
-    private ?int $id;
+    protected ?int $id;
     private ?string $nazwa_partii, $skrot_nazwy,  $sciezka_do_obrazu;
     
     public function __construct($id = NULL, $conn = NULL, $nazwa_partii, $skrot_nazwy, $sciezka_do_obrazu) {
@@ -13,19 +15,18 @@ class Partia extends ElementBazy {
             $this->skrot_nazwy = $skrot_nazwy;
             $this->sciezka_do_obrazu = $sciezka_do_obrazu;
         }
+    }
         
-        protected function przypiszDane(array $dane) {
+        protected function przypiszDane(array $dane) : void {
             $this->id = $dane['id_partii'];
             $this->nazwa_partii = $dane['nazwa_partii'];
             $this->skrot_nazwy = $dane['skrot_nazwy'];
             $this->sciezka_do_obrazu = $dane['sciezka_do_obrazu'];
         }
         
-        protected function pobierzTabele() {
+        protected function pobierzTabele() : string {
             return "Partie";
         }
-        
-    }
 
 }
 
