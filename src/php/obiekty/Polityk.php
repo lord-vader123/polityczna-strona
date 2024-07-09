@@ -30,7 +30,7 @@ class Polityk extends ElementBazy{
         
     }
 
-    protected function getTabela(): string {
+    protected function pobierzTabele(): string {
         return "Politycy";
     }
 }
