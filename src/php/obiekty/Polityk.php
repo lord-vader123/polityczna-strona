@@ -1,10 +1,13 @@
 <?php 
 
+require_once 'ElementBazy.php';
+
 class Polityk extends ElementBazy{
     // parametry
     private string $imie, $nazwisko, $sciezka_do_obrazu;
-    private ?int $id, $id_partii, $id_komitetu;
+    private ?int $id_partii, $id_komitetu;
     private bool $jest_poslem;
+    protected ?int $id;
 
     public function __construct($imie, $nazwisko, $sciezka_do_obrazu, $id_partii = NULL, $id_komitetu = NULL, $jest_poslem, mysqli $conn = NULL, $id = NULL) {
         if ($id !== NULL && $conn !== NULL) {
