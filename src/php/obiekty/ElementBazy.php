@@ -7,6 +7,7 @@ abstract class ElementBazy {
     public function __construct($id = NULL, $conn = NULL) { // jeżeli podano id obiekt istenieje i należy pobrać jego parametry z bazy danych 
         if ($id !== NULL && $conn !== NULL) {
             $this->pobierzDaneZBazyDanych($id, $conn);
+            return;
         } else {
             $this->id = $id;
         }
