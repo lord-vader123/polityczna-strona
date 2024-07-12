@@ -10,6 +10,10 @@ include_once '/php/login.php';
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+
+<header>
+    <a href="/index.php">Powrót</a>
+</header>
     
 </body>
 </html>
