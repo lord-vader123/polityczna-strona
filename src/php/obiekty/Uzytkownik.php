@@ -1,8 +1,6 @@
 <?php
-
 require_once 'ElementBazy.php';
 
-// TRZEBA DODAĆ HASHOWANIE HASEŁ !!!!
 class Uzytkownik extends ElementBazy {
     // parametry
     protected ?int $id;
@@ -18,7 +16,7 @@ class Uzytkownik extends ElementBazy {
         $this -> imie = $imie;
         $this -> nazwisko = $nazwisko;
         $this -> login = $login;
-        $this -> haslo = $haslo;
+        $this -> haslo = password_hash($haslo, PASSWORD_DEFAULT);
 
     }
     
@@ -49,6 +47,8 @@ class Uzytkownik extends ElementBazy {
     protected function pobierzTabele() : string {
         return "Uzytkownicy";
     }
+    
+    
 }
 
 ?>
