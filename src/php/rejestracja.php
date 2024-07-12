@@ -26,8 +26,10 @@ include_once '/php/login.php';
             <label for="haslo">Hasło</label>
             <input type="password" name="haslo">
             <input type="submit" value="Zarejestruj się">
+            <div id="blad"></div>
         </form>
     </div>
     
+    <script src="/js/weryfikacja-rejestracja.js"></script>
 </body>
 </html>
