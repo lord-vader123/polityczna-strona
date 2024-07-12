@@ -9,7 +9,7 @@ class Uzytkownik extends ElementBazy {
     private ?string $imie, $nazwisko, $login, $haslo;
     
     // konstruktor który w przypadku podania id wypełnia informacje danymi z bazy danych użytkownika o podanym id, w innym wypadku przypisuje dane podane w argumentach
-    public function __construct($id = NULL, $imie = NULL, $nazwisko = NULL, $login = NULL, $haslo = NULL, ?mysqli $conn = NULL)  {
+    public function __construct($imie = NULL, $nazwisko = NULL, $login = NULL, $haslo = NULL, ?mysqli $conn = NULL, $id = NULL)  {
         if ($id !== NULL && $conn !== NULL) {
             parent::__construct($id, $conn);
         }
