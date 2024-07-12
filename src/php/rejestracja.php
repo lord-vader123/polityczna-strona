@@ -1,5 +1,6 @@
 <?php
 include_once '/php/login.php';
+include_once 'php/obiekty/Uzytkownik.php';
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -16,7 +17,7 @@ include_once '/php/login.php';
     </header>
 
     <div class="content">
-        <form action="<?php echo htmlspecialchars($_SERVER['php_self']); ?>" method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
             <label for="imie">Imię</label>
             <input type="text" name="imie">
             <label for="nazwisko">Nazwisko</label>
@@ -27,6 +28,16 @@ include_once '/php/login.php';
             <input type="password" name="haslo">
             <input type="submit" value="Zarejestruj się">
             <div id="blad"></div>
+            <?php
+            $imie = $_POST['imie'];
+            $nazwisko = $_POST['nazwisko'];
+            $login = $_POST['login'];
+            $haslo = $_POST['haslo'];
+            
+            $uzytkownik = new Uzytkownik($imie, $nazwisko, $login, $haslo, $conn);
+            $uzytkownik.wyslijDoBazyDanych();
+            
+            ?>
         </form>
     </div>
     
