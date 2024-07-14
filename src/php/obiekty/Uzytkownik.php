@@ -73,7 +73,7 @@ class Uzytkownik extends ElementBazy {
     }
 
     public function setHaslo(?string $haslo): void {
-        $this->haslo = $haslo;
+        $this->haslo = password_hash($haslo, PASSWORD_DEFAULT) ;
     }
 }
 
