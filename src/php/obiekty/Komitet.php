@@ -6,7 +6,7 @@ class Komitet extends ElementBazy {
     protected ?int $id;
     private string $nazwa_komitetu;
     
-    public function __construct($id, $conn, $nazwa_komitetu) {
+    public function __construct(?int $id, ?mysqli $conn) {
         parent::__construct($id, $conn);
         $this->nazwa_komitetu = $nazwa_komitetu;
     }
@@ -18,5 +18,19 @@ class Komitet extends ElementBazy {
     
     protected function pobierzTabele() : string {
         return "Komitety";
+    }
+
+    // Gettery
+    public function getId(): ?int {
+        return $this->id;
+    }
+
+    public function getNazwaKomitetu(): string {
+        return $this->nazwa_komitetu;
+    }
+
+    // Settery
+    public function setNazwaKomitetu(string $nazwa_komitetu): void {
+        $this->nazwa_komitetu = $nazwa_komitetu;
     }
 }
