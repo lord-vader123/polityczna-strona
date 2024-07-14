@@ -1,6 +1,6 @@
 <?php
-include_once '/php/login.php';
-include_once 'php/obiekty/Uzytkownik.php';
+include_once '/php/login-mysql.php';
+include_once '/php/obiekty/Uzytkownik.php';
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -29,12 +29,14 @@ include_once 'php/obiekty/Uzytkownik.php';
             <input type="submit" value="Zarejestruj się">
             <div id="blad"></div>
             <?php
-            $imie = $_POST['imie'];
-            $nazwisko = $_POST['nazwisko'];
-            $login = $_POST['login'];
-            $haslo = $_POST['haslo'];
+            $uzytkownik = new Uzytkownik(NULL, $conn);
+            var_dump($uzytkownik);
+
+            $uzytkownik->setImie($_POST['imie']);
+            $uzytkownik->setNazwisko($_POST['nazwisko']);
+            $uzytkownik->setLogin($_POST['login']);
+            $uzytkownik->setHaslo($_POST['haslo']);
             
-            $uzytkownik = new Uzytkownik($imie, $nazwisko, $login, $haslo, $conn);
             $uzytkownik.wyslijDoBazyDanych();
             
             ?>
