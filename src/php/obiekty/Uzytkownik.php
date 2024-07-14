@@ -1,5 +1,5 @@
 <?php
-require_once 'ElementBazy.php';
+require_once '/php/obiekty/ElementBazy.php';
 
 class Uzytkownik extends ElementBazy {
     // parametry
@@ -42,10 +42,10 @@ class Uzytkownik extends ElementBazy {
         return "Uzytkownicy";
     }
     
-    // gettery i settery
+    // gettery    
     public function getImie(): ?string {
-            return $this->imie;
-        }
+        return $this->imie;
+    }
 
     public function getNazwisko(): ?string {
         return $this->nazwisko;
