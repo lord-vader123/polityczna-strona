@@ -7,16 +7,10 @@ class Uzytkownik extends ElementBazy {
     private ?string $imie, $nazwisko, $login, $haslo;
     
     // konstruktor który w przypadku podania id wypełnia informacje danymi z bazy danych użytkownika o podanym id, w innym wypadku przypisuje dane podane w argumentach
-    public function __construct($imie = NULL, $nazwisko = NULL, $login = NULL, $haslo = NULL, ?mysqli $conn = NULL, $id = NULL)  {
+    public function __construct($id = NULL, ?mysqli $conn = NULL)  {
         if ($id !== NULL && $conn !== NULL) {
             parent::__construct($id, $conn);
         }
-
-        $this -> id = $id;
-        $this -> imie = $imie;
-        $this -> nazwisko = $nazwisko;
-        $this -> login = $login;
-        $this -> haslo = password_hash($haslo, PASSWORD_DEFAULT);
 
     }
     
@@ -48,7 +42,39 @@ class Uzytkownik extends ElementBazy {
         return "Uzytkownicy";
     }
     
-    
+    // gettery i settery
+    public function getImie(): ?string {
+            return $this->imie;
+        }
+
+    public function getNazwisko(): ?string {
+        return $this->nazwisko;
+    }
+
+    public function getLogin(): ?string {
+        return $this->login;
+    }
+
+    public function getHaslo(): ?string {
+        return $this->haslo;
+    }
+
+    // Settery
+    public function setImie(?string $imie): void {
+        $this->imie = $imie;
+    }
+
+    public function setNazwisko(?string $nazwisko): void {
+        $this->nazwisko = $nazwisko;
+    }
+
+    public function setLogin(?string $login): void {
+        $this->login = $login;
+    }
+
+    public function setHaslo(?string $haslo): void {
+        $this->haslo = $haslo;
+    }
 }
 
 ?>
