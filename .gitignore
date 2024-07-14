@@ -1691,3 +1691,15 @@ src/vendor/theseer/tokenizer/src/Tokenizer.php
 src/vendor/theseer/tokenizer/src/XMLSerializer.php
 src/composer.json
 src/composer.lock
+src/testy/uzytkownikTest.php
+src/testy/ElementBazy.php
+src/testy/Uzytkownik.php
+src/testy/UzytkownikTest.php
+src/vendor/bin/.phpunit.result.cache
+src/vendor/joshcam/mysqli-database-class/.gitattributes
+src/vendor/joshcam/mysqli-database-class/composer.json
+src/vendor/joshcam/mysqli-database-class/dbObject.md
+src/vendor/joshcam/mysqli-database-class/dbObject.php
+src/vendor/joshcam/mysqli-database-class/LICENSE
+src/vendor/joshcam/mysqli-database-class/MysqliDb.php
+src/vendor/joshcam/mysqli-database-class/readme.md
