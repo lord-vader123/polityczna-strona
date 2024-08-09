@@ -16,13 +16,14 @@ Dodatkowo zapisuje ona konta użytkowników strony.
  
 - Imie_polityka
 - Nazwisko_polityka
-- Przynależność_partyjna
-- Przynależność_komitetowa
 - Jest_posłem
+- Portret
 
 - Nazwa_partii
 - Skrót_nazwy
 - Logo_partii
+
+- Nazwa_komitetu
 
 ## 2 stopień normalizacji
 
@@ -41,9 +42,8 @@ Dodatkowo zapisuje ona konta użytkowników strony.
 | id_polityka       | INT (PK)         | Unikalne ID polityka   |
 | imie_polityka     | VARCHAR(255)     | Imię polityka          |
 | nazwisko_polityka | VARCHAR(255)     | Nazwisko polityka      |
-| id_partii         | INT (FK)         | ID partii polityka     |
-| id_komitetu       | INT (FK)         | ID komitetu polityka   |
 | jest_posłem       | BOOLEAN          | Czy polityk jest posłem|
+| portret           | VARCHAR(255)     | Ścieżka do folderu     |
 
 ### Tabela Partie
 | Kolumna           | Typ danych       | Opis                   |
@@ -77,9 +77,8 @@ Dodatkowo zapisuje ona konta użytkowników strony.
 | id_polityka       | INT (PK)         | Unikalne ID polityka   |
 | imie_polityka     | VARCHAR(255)     | Imię polityka          |
 | nazwisko_polityka | VARCHAR(255)     | Nazwisko polityka      |
-| id_partii         | INT (FK)         | ID partii polityka     |
-| id_komitetu       | INT (FK)         | ID komitetu polityka   |
 | jest_posłem       | BOOLEAN          | Czy polityk jest posłem|
+| portret           | VARCHAR(255)     | Ścieżka do folderu     |
 
 ### Tabela Partie
 | Kolumna           | Typ danych       | Opis                   |
