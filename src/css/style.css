@@ -46,3 +46,14 @@ a {
 
 
 }
+
+.content form {
+    display: flex;
+    flex-direction: column;
+    padding: 1vh;
+}
+
+.content form input {
+    display: flex;
+    flex-grow: 1;
+}
