@@ -1,6 +1,6 @@
 <?php
 include_once '/php/login-mysql.php';
-include_once '/php/obiekty/Uzytkownik.php';
+include_once '/php/objects/User.php';
 ?>
 <!DOCTYPE html>
 <html lang="pl">
