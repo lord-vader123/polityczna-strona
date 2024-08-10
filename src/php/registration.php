@@ -27,7 +27,7 @@ include_once '/php/objects/User.php';
             <label for="haslo">Hasło</label>
             <input type="password" name="haslo">
             <input type="submit" value="Zarejestruj się">
-            <div id="blad"></div>
+            <div id="error"></div>
             <?php
             // wysłanie do bazy danych 
             ?>
