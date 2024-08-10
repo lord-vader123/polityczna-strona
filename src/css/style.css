@@ -8,7 +8,7 @@ body, .content {
 
 body {
     /* tło strony */
-    background-image: url(/assets/img/tlo.jpg); /*źródło obrazu: https://bi.im-g.pl/im/48/e8/1c/z30312520AMP,Sala-obrad-Sejmu-w-dzien-po-wyborach-.jpg */
+    background-image: url(/assets/img/background.jpg); /*źródło obrazu: https://bi.im-g.pl/im/48/e8/1c/z30312520AMP,Sala-obrad-Sejmu-w-dzien-po-wyborach-.jpg */
     background-repeat: no-repeat;
     background-position: center ;
     background-size: cover;
