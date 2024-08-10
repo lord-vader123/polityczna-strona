@@ -12,8 +12,8 @@
 <body>
 
   <header>
-  <a href="/php/logowanie.php">Zaloguj się</a>
-  <a href="/php/rejestracja.php">Zarejestruj się</a>
+  <a href="/php/login.php">Zaloguj się</a>
+  <a href="/php/registration.php">Zarejestruj się</a>
   </header>
 
   <div class="content">

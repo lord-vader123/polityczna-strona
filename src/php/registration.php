@@ -29,20 +29,11 @@ include_once '/php/obiekty/Uzytkownik.php';
             <input type="submit" value="Zarejestruj się">
             <div id="blad"></div>
             <?php
-            $uzytkownik = new Uzytkownik(NULL, $conn);
-            var_dump($uzytkownik);
-
-            $uzytkownik->setImie($_POST['imie']);
-            $uzytkownik->setNazwisko($_POST['nazwisko']);
-            $uzytkownik->setLogin($_POST['login']);
-            $uzytkownik->setHaslo($_POST['haslo']);
-            
-            $uzytkownik.wyslijDoBazyDanych();
-            
+            // wysłanie do bazy danych 
             ?>
         </form>
     </div>
     
-    <script src="/js/weryfikacja-rejestracja.js"></script>
+    <script src="/js/verify.js"></script>
 </body>
 </html>
