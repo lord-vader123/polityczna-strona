@@ -5,7 +5,7 @@
 $serverName = "localhost";
 $userName = "root";
 $password = "";
-$db_name = "politycy";
+$db_name = "politicians";
 
 # utworzenie połączenia z bazą danych o nazwie conn
 
