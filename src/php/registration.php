@@ -1,6 +1,6 @@
 <?php
 include_once '/php/login-mysql.php';
-include_once '/php/obiekty/Uzytkownik.php';
+include_once '/php/objects/User.php';
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -17,17 +17,17 @@ include_once '/php/obiekty/Uzytkownik.php';
     </header>
 
     <div class="content">
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+        <form id="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
             <label for="imie">Imię</label>
-            <input type="text" name="imie">
+            <input type="text" name="name">
             <label for="nazwisko">Nazwisko</label>
-            <input type="text" name="nazwisko">
+            <input type="text" name="surname">
             <label for="login">Login/Mail</label>
             <input type="email" name="login">
             <label for="haslo">Hasło</label>
-            <input type="password" name="haslo">
+            <input type="password" name="password">
             <input type="submit" value="Zarejestruj się">
-            <div id="blad"></div>
+            <div id="error"></div>
             <?php
             // wysłanie do bazy danych 
             ?>
