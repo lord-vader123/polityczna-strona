@@ -29,6 +29,7 @@ abstract class MySqlObject {
         }
     }
     
+    
     private function getDbData(?mysqli $conn, int $id): array {
         $sql = "SELECT * FROM ". $this->getTable(). " where id=?";
         $stmt = $conn->prepare($sql);
@@ -40,4 +41,5 @@ abstract class MySqlObject {
     
     
     abstract public function getTable(): string;
+    abstract public function sendToDb() : void;
 }
