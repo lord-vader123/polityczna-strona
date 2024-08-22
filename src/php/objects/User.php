@@ -10,4 +10,13 @@ class User extends MySqlObject {
     public function getTable(): string {
         return "Users";
     }
+    
+    public function sendToDb(): void{
+        $sql = "INSERT INTO ". $this->getTable() ."(name, surname, login, passphrase) VALUES(????)";
+        $stmt = $this->conn->prepare($sql);         
+        $stmt->bind_param($this->dbData['name'], $this->dbData['surname'], $this->dbData['login'], $this->dbData['passphrase']);
+        $stmt->execute();
+        $stmt->close();
+        return;
+    }
 }
