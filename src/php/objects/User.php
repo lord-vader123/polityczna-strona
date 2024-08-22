@@ -12,9 +12,10 @@ class User extends MySqlObject {
     }
     
     public function sendToDb(): void{
+        $dbData = $this->getData();
         $sql = "INSERT INTO ". $this->getTable() ."(name, surname, login, passphrase) VALUES(????)";
         $stmt = $this->conn->prepare($sql);         
-        $stmt->bind_param($this->dbData['name'], $this->dbData['surname'], $this->dbData['login'], $this->dbData['passphrase']);
+        $stmt->bind_param($dbData['name'], $dbData['surname'], $dbData['login'], $dbData['passphrase']);
         $stmt->execute();
         $stmt->close();
         return;
