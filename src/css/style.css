@@ -32,6 +32,22 @@ header {
     text-align: center;
     padding:3px;
     border-radius: 10px 0 10px 0; /* zakrzywienie krawędzi */
+    display: flex;
+    flex-direction: row;        /* */
+    justify-content: center;    /* Wyśrodkowanie elementów*/
+    align-items: center;        /* */
+}
+
+.title{
+    width: 20%;
+}
+
+.menu{
+    width: 60%;
+}
+
+.login{
+    width: 20%;
 }
 
 a {
@@ -43,7 +59,8 @@ a {
     height: 80%;
     padding: 4px;
     color: white;
-
+    border-radius: 10px 10px 10px 10px;
+    border: rgb(0, 50, 0) 2px solid;
 
 }
 
