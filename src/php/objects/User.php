@@ -20,4 +20,17 @@ class User extends MySqlObject {
         $stmt->close();
         return;
     }
+    
+    public function setData($arr): void {
+        $dbData = $this->getDataArray();
+        if (count($arr) == 4) {
+            $dbData['name'] = $arr['name'];
+            $dbData['surname'] = $arr['surname'];
+            $dbData['login'] = $arr['login'];
+            $dbData['passphrase'] = $arr['passphrase'];
+            $this->setDataArray($dbData);
+        } else {
+            throw new Exception('Array has wrong ammount of fields');
+        }
+    }
 }
