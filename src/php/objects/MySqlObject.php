@@ -15,8 +15,12 @@ abstract class MySqlObject {
     }
     
     
-    public function getData() : array {
+    public function getDataArray() : array {
         return $this->dbData;
+    }
+    
+    public  function setDataArray(array $dbData) : void {
+        $this->dbData = $dbData;
     }
     
     
@@ -32,5 +36,5 @@ abstract class MySqlObject {
     
     abstract public function getTable(): string;
     abstract public function sendToDb() : void;
-    abstract public function setData() : void;
+    abstract public function setData(array $data) : void;
 }
