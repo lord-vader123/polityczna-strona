@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2024 at 05:01 PM
+-- Generation Time: Aug 27, 2024 at 05:39 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -96,7 +96,7 @@ CREATE TABLE `users` (
   `name` varchar(20) DEFAULT NULL,
   `surname` varchar(30) DEFAULT NULL,
   `login` varchar(40) DEFAULT NULL,
-  `passphrase` varchar(40) DEFAULT NULL
+  `passphrase` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -181,7 +181,7 @@ ALTER TABLE `politicians`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
