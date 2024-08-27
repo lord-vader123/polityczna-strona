@@ -1,6 +1,6 @@
 <?php
-include_once '/php/login-mysql.php';
-include_once '/php/objects/User.php';
+include __DIR__ . '/login-mysql.php';
+include __DIR__ . '/objects/User.php';
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -25,13 +25,33 @@ include_once '/php/objects/User.php';
             <label for="login">Login/Mail</label>
             <input type="email" name="login">
             <label for="haslo">Hasło</label>
-            <input type="password" name="password">
+            <input type="password" name="passphrase">
             <input type="submit" value="Zarejestruj się">
             <div id="error"></div>
-            <?php
-            // wysłanie do bazy danych 
-            ?>
         </form>
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $data = array(
+                    'name' => $conn->real_escape_string($_POST['name']),
+                    'surname' => $conn->real_escape_string($_POST['surname']),
+                    'login' => $conn->real_escape_string($_POST['login']),
+                    'passphrase' => $conn->real_escape_string($_POST['passphrase']),
+                );
+                
+                $user = new User($conn, null);
+                $user->setData($data);
+                
+                // wysłanie do bazy danych 
+
+                if ($user->sendToDb()) {
+                    $conn->close();
+                    header('Location: /dashboard.php');
+                } else {
+                    echo "Coś poszło nie tak…";
+                }
+            }
+
+            ?>
     </div>
     
     <script src="/js/verify.js"></script>

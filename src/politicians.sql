@@ -96,7 +96,7 @@ CREATE TABLE `users` (
   `name` varchar(20) DEFAULT NULL,
   `surname` varchar(30) DEFAULT NULL,
   `login` varchar(40) DEFAULT NULL,
-  `passphrase` varchar(40) DEFAULT NULL
+  `passphrase` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

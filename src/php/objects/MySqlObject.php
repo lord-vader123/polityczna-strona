@@ -2,32 +2,29 @@
 
 abstract class MySqlObject {
 
-    public array $dbData;
+    private array $dbData;
     public mysqli $conn;
 
-    public function __construct(?mysqli $conn, ?int $id) {
-        if ($conn === null && $id === null) {
+    public function __construct(mysqli $conn, ?int $id) {
+        $this->conn = $conn;
+        $this->dbData = [];
+
+        if ($id === null) {
             return;
         } else {
-            $this->conn = $conn;
             $this->dbData = $this->getDbData($conn, $id);
         }
     }
     
-    public function setData(string ...$values): void {
-        $sql = "DESCRIBE ".$this->getTable();
-        $result = $this->conn->query($sql);
-
-        $index = 0;
-        while ($row = $result->fetch_assoc()) {
-            if (isset($values[$index])) { // jeżeli argument istnieje przypisz jego wartość do talbicy
-                $this->dbData[$row['Field']] = $values[$index];
-                $index++;
-            } else { // w przeciwnym wypadku przypisz null
-               $this->dbData[$row['Field']] = null; 
-            }
-        }
+    
+    public function getDataArray() : array {
+        return $this->dbData;
     }
+    
+    public  function setDataArray(array $dbData) : void {
+        $this->dbData = $dbData;
+    }
+    
     
     private function getDbData(?mysqli $conn, int $id): array {
         $sql = "SELECT * FROM ". $this->getTable(). " where id=?";
@@ -40,4 +37,6 @@ abstract class MySqlObject {
     
     
     abstract public function getTable(): string;
+    abstract public function sendToDb() : void;
+    abstract public function setData(array $data) : bool;
 }
