@@ -25,11 +25,27 @@ include __DIR__ . '/objects/User.php';
             <label for="login">Login/Mail</label>
             <input type="email" name="login">
             <label for="haslo">Hasło</label>
-            <input type="password" name="password">
+            <input type="password" name="passphrase">
             <input type="submit" value="Zarejestruj się">
             <div id="error"></div>
         </form>
             <?php
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $data = array(
+                    'name' => $conn->real_escape_string($_POST['name']),
+                    'surname' => $conn->real_escape_string($_POST['surname']),
+                    'login' => $conn->real_escape_string($_POST['login']),
+                    'passphrase' => $conn->real_escape_string($_POST['passphrase']),
+                );
+                
+                $user = new User($conn, null);
+                $user->setData($data);
+                
+                // wysłanie do bazy danych 
+                $user->sendToDb();
+                $conn->close();
+            }
+
             ?>
     </div>
     
