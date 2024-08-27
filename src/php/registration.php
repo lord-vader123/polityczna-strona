@@ -14,9 +14,7 @@ include __DIR__ . '/objects/User.php';
 
 <body>
 
-    <header>
-        <a href="/index.php">Powrót</a>
-    </header>
+    <?php include_once __DIR__ . '/header.php'; ?>
 
     <div class="content">
         <form id="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
