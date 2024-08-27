@@ -39,7 +39,7 @@ function isValidPassword(password) {
 
 function isValid() {
     const inputs = document.querySelectorAll('input');
-    const passwordField = document.getElementsByName('password')[0].value;
+    const passwordField = document.getElementsByName('passphrase')[0].value;
 
     return isAllSelected(inputs) && isValidPassword(passwordField);
 }
