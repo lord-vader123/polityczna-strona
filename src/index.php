@@ -11,10 +11,8 @@
 
 <body>
 
-  <header>
-  <a href="/php/login.php">Zaloguj się</a>
-  <a href="/php/registration.php">Zarejestruj się</a>
-  </header>
+  <?php include_once __DIR__ . '/php/header.php'; ?>
+
 
   <div class="content">
   <p>Aktualna ilość partii: </p>
@@ -22,6 +20,7 @@
   <p>Aktualna ilość polityków: </p>
 
   </div>
+  
 
 </body>
 
