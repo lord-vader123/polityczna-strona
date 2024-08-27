@@ -5,11 +5,12 @@ abstract class MySqlObject {
     private array $dbData;
     public mysqli $conn;
 
-    public function __construct(?mysqli $conn, ?int $id) {
-        if ($conn === null && $id === null) {
+    public function __construct(mysqli $conn, ?int $id) {
+        $this->con = $conn;
+
+        if ($id === null) {
             return;
         } else {
-            $this->conn = $conn;
             $this->dbData = $this->getDbData($conn, $id);
         }
     }
