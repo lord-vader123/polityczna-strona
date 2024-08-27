@@ -42,8 +42,13 @@ include __DIR__ . '/objects/User.php';
                 $user->setData($data);
                 
                 // wysłanie do bazy danych 
-                $user->sendToDb();
-                $conn->close();
+
+                if ($user->sendToDb()) {
+                    $conn->close();
+                    header('Location: /dashboard.php');
+                } else {
+                    echo "Coś poszło nie tak…";
+                }
             }
 
             ?>
