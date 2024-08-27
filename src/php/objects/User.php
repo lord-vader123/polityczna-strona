@@ -10,16 +10,23 @@ class User extends MySqlObject {
     }
 
     public function getTable(): string {
-        return "Users";
+        return "users";
     }
     
     // wysyła dane z $dbData do bazy danych
     public function sendToDb(): void{
         $dbData = $this->getDataArray();
-        $sql = "INSERT INTO ". $this->getTable() ."(name, surname, login, passphrase) VALUES(????)";
+        $sql = "INSERT INTO ". $this->getTable() ."(name, surname, login, passphrase) VALUES(?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);         
-        $stmt->bind_param($dbData['name'], $dbData['surname'], $dbData['login'], $dbData['passphrase']);
-        $stmt->execute();
+        if ($stmt === false) {
+            throw new Exception('Failed to prepare SQL statement: ' . $this->conn->error);
+        }
+
+        $stmt->bind_param("ssss", $dbData['name'], $dbData['surname'], $dbData['login'], $dbData['passphrase']);
+        
+        if (!$stmt->execute()) {
+            throw new Exception('Failed to execute SQL statement: ' . $stmt->error);
+        }
         $stmt->close();
         return;
     }
