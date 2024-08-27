@@ -14,7 +14,7 @@ class User extends MySqlObject {
     }
     
     // wysyła dane z $dbData do bazy danych
-    public function sendToDb(): void{
+    public function sendToDb(): bool{
         $dbData = $this->getDataArray();
         $sql = "INSERT INTO ". $this->getTable() ."(name, surname, login, passphrase) VALUES(?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);         
@@ -28,7 +28,7 @@ class User extends MySqlObject {
             throw new Exception('Failed to execute SQL statement: ' . $stmt->error);
         }
         $stmt->close();
-        return;
+        return true;
     }
     
     // Przypisuje dane w $arr do odpowiednich pól tablicy $dbData
