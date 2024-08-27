@@ -4,7 +4,7 @@
     </div>
     <div class="menu">
       <div class="navbar">
-        <a href="index.php">Strona Główna</a>
+        <a href="/index.php">Strona Główna</a>
         <a href="about:blank">Aktualności</a>
 
         <div class="dropdown">
