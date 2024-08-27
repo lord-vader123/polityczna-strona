@@ -120,6 +120,10 @@ header {
     align-items: center;
 }
 
+.login img {
+  border-radius: 25px;
+}
+
 a {
     padding: 8px;
 }
