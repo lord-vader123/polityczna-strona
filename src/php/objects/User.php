@@ -13,6 +13,7 @@ class User extends MySqlObject {
         return "Users";
     }
     
+    // wysyła dane z $dbData do bazy danych
     public function sendToDb(): void{
         $dbData = $this->getDataArray();
         $sql = "INSERT INTO ". $this->getTable() ."(name, surname, login, passphrase) VALUES(????)";
@@ -23,6 +24,7 @@ class User extends MySqlObject {
         return;
     }
     
+    // Przypisuje dane w $arr do odpowiednich pól tablicy $dbData
     public function setData($arr): void {
         $dbData = $this->getDataArray();
         if (count($arr) == 4) {
