@@ -58,4 +58,15 @@ class User extends MySqlObject {
         }
         return false;
     }
+    
+    public function checkLoginAvailability(string $login): bool {
+        $sql = 'SELECT login FROM users WHERE login=?';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('s', $login);
+        $stmt->execute();
+        $data = $stmt->get_result()->fetch_assoc();
+        
+        return $data === null;
+        
+    }
 }
