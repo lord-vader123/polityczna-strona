@@ -6,7 +6,8 @@ abstract class MySqlObject {
     public mysqli $conn;
 
     public function __construct(mysqli $conn, ?int $id) {
-        $this->con = $conn;
+        $this->conn = $conn;
+        $this->dbData = [];
 
         if ($id === null) {
             return;
