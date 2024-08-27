@@ -27,3 +27,15 @@
 
 
   </div>
+  <div class="login">
+      <div class="dropdown">
+      <img style="width: 100px; height: 100px;" src="/assets/img/trzymaczmiejsca.png">
+        <div class="dropdown-content">
+          <a href="/php/login.php">Zaloguj się</a>
+          <a href="/php/registration.php">Zarejestruj się</a>
+        </div>
+
+
+  </div>
+</div>
+  </header>
