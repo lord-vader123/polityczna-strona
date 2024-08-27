@@ -32,7 +32,7 @@ class User extends MySqlObject {
     }
     
     // Przypisuje dane w $arr do odpowiednich pól tablicy $dbData
-    public function setData(array $arr): void {
+    public function setData(array $arr): bool {
         if (count($arr) == 4 && is_array($arr)) {
             $dbData = $this->getDataArray();
             $passphrase = password_hash($arr['passphrase'], PASSWORD_BCRYPT);
@@ -41,6 +41,7 @@ class User extends MySqlObject {
             $dbData['login'] = $arr['login'];
             $dbData['passphrase'] = $passphrase;          
             $this->setDataArray($dbData);
+            return true;
         } else {
             throw new Exception('Array has wrong ammount of fields');
         }

@@ -38,5 +38,5 @@ abstract class MySqlObject {
     
     abstract public function getTable(): string;
     abstract public function sendToDb() : void;
-    abstract public function setData(array $data) : void;
+    abstract public function setData(array $data) : bool;
 }
