@@ -1,5 +1,7 @@
 <?php
 
+include __DIR__ . '/MySqlObject.php';
+
 class Party extends MySqlObject {
     
     public function __construct(mysqli|null $conn, int|null $id) {

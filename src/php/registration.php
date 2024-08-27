@@ -1,6 +1,6 @@
 <?php
-include_once '/php/login-mysql.php';
-include_once '/php/objects/User.php';
+include __DIR__ . '/login-mysql.php';
+include __DIR__ . '/objects/User.php';
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -28,18 +28,9 @@ include_once '/php/objects/User.php';
             <input type="password" name="password">
             <input type="submit" value="Zarejestruj się">
             <div id="error"></div>
-            <?php
-            $user = new User($conn, null);
-            $data = array(
-                'name' => $conn->real_escape_string($_POST['name']),
-                'surname' => $conn->real_escape_string($_POST['surname']),
-                'login' => $conn->real_escape_string($_POST['login']),
-                'passhprase' => $conn->real_escape_string($_POST['passhprase']),
-            );
-            
-            // wysłanie do bazy danych 
-            ?>
         </form>
+            <?php
+            ?>
     </div>
     
     <script src="/js/verify.js"></script>

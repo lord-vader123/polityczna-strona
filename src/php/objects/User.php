@@ -1,5 +1,7 @@
 <?php
 
+include __DIR__ . '/MySqlObject.php';
+
 class User extends MySqlObject {
     
     public function __construct(mysqli|null $conn, int|null $id) {
@@ -12,7 +14,7 @@ class User extends MySqlObject {
     }
     
     public function sendToDb(): void{
-        $dbData = $this->getData();
+        $dbData = $this->getDataArray();
         $sql = "INSERT INTO ". $this->getTable() ."(name, surname, login, passphrase) VALUES(????)";
         $stmt = $this->conn->prepare($sql);         
         $stmt->bind_param($dbData['name'], $dbData['surname'], $dbData['login'], $dbData['passphrase']);
