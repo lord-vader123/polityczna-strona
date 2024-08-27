@@ -46,4 +46,16 @@ class User extends MySqlObject {
             throw new Exception('Array has wrong ammount of fields');
         }
     }
+    
+    public function verifyData(string $login, string $password): bool {
+        $stmt = $this->conn->prepare('SELECT login, passphrase FROM users WHERE login=?');
+        $stmt->bind_param('s', $login);
+        $stmt->execute();
+        $data = $stmt->get_result()->fetch_assoc();
+        
+        if (password_verify($password, $data['passphrase']) && $login == $data['login']) {
+            return true;
+        }
+        return false;
+    }
 }
