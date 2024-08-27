@@ -4,12 +4,14 @@ include __DIR__ . '/objects/User.php';
 ?>
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rejestracja</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
 
     <header>
@@ -29,31 +31,37 @@ include __DIR__ . '/objects/User.php';
             <input type="submit" value="Zarejestruj się">
             <div id="error"></div>
         </form>
-            <?php
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $data = array(
-                    'name' => $conn->real_escape_string($_POST['name']),
-                    'surname' => $conn->real_escape_string($_POST['surname']),
-                    'login' => $conn->real_escape_string($_POST['login']),
-                    'passphrase' => $conn->real_escape_string($_POST['passphrase']),
-                );
-                
-                $user = new User($conn, null);
-                $user->setData($data);
-                
-                // wysłanie do bazy danych 
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data = array(
+                'name' => $conn->real_escape_string($_POST['name']),
+                'surname' => $conn->real_escape_string($_POST['surname']),
+                'login' => $conn->real_escape_string($_POST['login']),
+                'passphrase' => $conn->real_escape_string($_POST['passphrase']),
+            );
 
-                if ($user->sendToDb()) {
-                    $conn->close();
-                    header('Location: /dashboard.php');
-                } else {
-                    echo "Coś poszło nie tak…";
-                }
+            $user = new User($conn, null);
+            $user->setData($data);
+
+            if (!$user->checkLoginAvailability($data['login'])) {
+                echo "Podany adres email jest już wykorzystany.";
+                exit(1);
             }
-
-            ?>
+        
+            // wysłanie do bazy danych 
+        
+            if ($user->sendToDb()) {
+                $conn->close();
+                header('Location: /dashboard.php');
+                exit();
+            } else {
+                echo "Coś poszło nie tak…";
+            }
+        }
+        ?>
     </div>
-    
     <script src="/js/verify.js"></script>
+
 </body>
+
 </html>
