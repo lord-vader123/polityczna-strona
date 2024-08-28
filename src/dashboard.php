@@ -3,6 +3,10 @@ include __DIR__ . '/php/login-mysql.php';
 include __DIR__ . '/php/objects/User.php';
 session_start();
 $userId = $_SESSION['userId'];
+if (!isset($userId)) {
+    header('Location: /index.php');
+}
+setcookie('id', $userId, time() + (86400 * 30),'/');
 $user = new User($conn, (int) $userId);
 
 ?>
