@@ -71,11 +71,13 @@ class User extends MySqlObject {
     }
     
     public function getUserId(): ?int {
-        $stmt = $this->conn->prepare('SELECT id FROM users WHERE login = ?');
+        $stmt = $this->conn->prepare('SELECT user_id FROM users WHERE login = ?');
         if (!$stmt) {
             throw new Exception("Error in mysql statement");
         }
-        $stmt->bind_param('s', $this->dbData['login']);
+        $userData = $this->getDataArray();
+        $stmt->bind_param('s', $userData['login']);
+        echo 'LOGIN: '. $userData['login'] .'<br>';
         $stmt->execute();
         $data = $stmt->get_result();
         
@@ -87,10 +89,7 @@ class User extends MySqlObject {
         $stmt->close();
 
 
-        if (isset($data['id']) && $data) {
-            return (int) $data['id'];
-        }
-        return null;
+        return isset($data['user_id']) ? (int) $data['user_id'] : null;
     }
 
 }
