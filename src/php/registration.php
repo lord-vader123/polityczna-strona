@@ -1,6 +1,7 @@
 <?php
 include __DIR__ . '/login-mysql.php';
 include __DIR__ . '/objects/User.php';
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -49,6 +50,7 @@ include __DIR__ . '/objects/User.php';
             // wysłanie do bazy danych 
         
             if ($user->sendToDb()) {
+                 $_SESSION['userId'] = $user->getUserId();
                 $conn->close();
                 header('Location: /dashboard.php');
                 exit();
