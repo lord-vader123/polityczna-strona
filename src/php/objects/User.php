@@ -70,14 +70,13 @@ class User extends MySqlObject {
         
     }
     
-    public function getUserId(): ?int {
+    public function getUserId(?string $login = null): ?int {
         $stmt = $this->conn->prepare('SELECT id FROM users WHERE login = ?');
         if (!$stmt) {
             throw new Exception("Error in mysql statement");
         }
-        $userData = $this->getDataArray();
-        $stmt->bind_param('s', $userData['login']);
-        echo 'LOGIN: '. $userData['login'] .'<br>';
+        $userLogin = $login === null ? $this->getDataArray()['login']  : $login;
+        $stmt->bind_param('s', $userLogin);
         $stmt->execute();
         $data = $stmt->get_result();
         
