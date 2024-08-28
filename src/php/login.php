@@ -27,9 +27,13 @@ session_start();
     <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = new User($conn, null);
+        $email = $conn->real_escape_string($_POST['email']);
+        $passphrase = $conn->real_escape_string($_POST['passphrase']);
         
-        if ($user->verifyData($conn->real_escape_string($_POST['email']), $conn->real_escape_string($_POST['passphrase']))) {
-            $_SESSION['userId'] = $user->getUserId();
+
+        
+        if ($user->verifyData($email, $passphrase)) {
+            $_SESSION['userId'] = $user->getUserId($email);
             header('Location: /dashboard.php');
         } else {
             echo "Podano nieprawidłowe dane";
