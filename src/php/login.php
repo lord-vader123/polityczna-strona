@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/login-mysql.php';
+include __DIR__ . '/scripts/login-mysql.php';
 include __DIR__ . '/objects/User.php';
 session_start();
 ?>
