@@ -4,7 +4,7 @@ include __DIR__ . '/MySqlObject.php';
 
 class User extends MySqlObject {
     
-    public function __construct(mysqli|null $conn, int|null $id) {
+    public function __construct(mysqli $conn, ?int $id) {
         parent::__construct($conn, $id);
 
     }
@@ -71,7 +71,7 @@ class User extends MySqlObject {
     }
     
     public function getUserId(): ?int {
-        $stmt = $this->conn->prepare('SELECT user_id FROM users WHERE login = ?');
+        $stmt = $this->conn->prepare('SELECT id FROM users WHERE login = ?');
         if (!$stmt) {
             throw new Exception("Error in mysql statement");
         }
@@ -89,7 +89,7 @@ class User extends MySqlObject {
         $stmt->close();
 
 
-        return isset($data['user_id']) ? (int) $data['user_id'] : null;
+        return isset($data['id']) ? (int) $data['id'] : null;
     }
 
 }
