@@ -1,3 +1,11 @@
+<?php
+if (isset($_COOKIE['id'])) {
+  session_start();
+  $_SESSION['id'] = $_COOKIE['id'];
+  header('Location: /dashboard.php');
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pl">
 

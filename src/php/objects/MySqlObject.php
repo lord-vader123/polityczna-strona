@@ -12,7 +12,8 @@ abstract class MySqlObject {
         if ($id === null) {
             return;
         } else {
-            $this->dbData = $this->getDbData($conn, $id);
+            $this->setDataArray($this->getDbData($conn, $id)) ;
+            return;
         }
     }
     
@@ -26,13 +27,13 @@ abstract class MySqlObject {
     }
     
     
-    private function getDbData(?mysqli $conn, int $id): array {
+    private function getDbData(mysqli $conn, int $id): array {
         $sql = "SELECT * FROM ". $this->getTable(). " where id=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_assoc() ?: [];
+        $result = $stmt->get_result()->fetch_assoc();
+        return $result ? $result : null;
     }
     
     

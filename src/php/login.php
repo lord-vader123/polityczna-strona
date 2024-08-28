@@ -1,6 +1,7 @@
 <?php
 include __DIR__ . '/login-mysql.php';
 include __DIR__ . '/objects/User.php';
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -26,8 +27,13 @@ include __DIR__ . '/objects/User.php';
     <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = new User($conn, null);
+        $email = $conn->real_escape_string($_POST['email']);
+        $passphrase = $conn->real_escape_string($_POST['passphrase']);
         
-        if ($user->verifyData($conn->real_escape_string($_POST['email']), $conn->real_escape_string($_POST['passphrase']))) {
+
+        
+        if ($user->verifyData($email, $passphrase)) {
+            $_SESSION['userId'] = $user->getUserId($email);
             header('Location: /dashboard.php');
         } else {
             echo "Podano nieprawidłowe dane";
