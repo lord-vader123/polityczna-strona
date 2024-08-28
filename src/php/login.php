@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/login-mysql.php';
+include __DIR__ . '/scripts/login-mysql.php';
 include __DIR__ . '/objects/User.php';
 session_start();
 ?>
@@ -9,11 +9,12 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
+    <?php include_once __DIR__ . '/php/html-snippets/icons.html' ?>
     <title>Logowanie</title>
 </head>
 <body>
 
-<?php include __DIR__ . '/header.php'; ?>
+<?php include_once __DIR__ . '/php/html-snippets/header.html'; ?>
 
 <div class="content">
     <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">

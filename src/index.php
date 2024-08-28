@@ -13,13 +13,14 @@ if (isset($_COOKIE['id'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/style.css">
+  <?php include_once __DIR__ . '/php/html-snippets/icons.html' ?>
   <title>Strona polityczna</title>
 
 </head>
 
 <body>
 
-  <?php include_once __DIR__ . '/php/header.php'; ?>
+  <?php include_once __DIR__ . '/php/html-snippets/header.html'; ?>
 
 
   <div class="content">
