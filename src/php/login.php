@@ -13,7 +13,7 @@ session_start();
 </head>
 <body>
 
-<?php include __DIR__ . '/header.php'; ?>
+<?php include_once __DIR__ . '/php/html-snippets/header.php'; ?>
 
 <div class="content">
     <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">

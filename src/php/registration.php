@@ -15,7 +15,7 @@ session_start();
 
 <body>
 
-    <?php include_once __DIR__ . '/header.php'; ?>
+    <?php include_once __DIR__ . '/php/html-snippets/header.php'; ?>
 
     <div class="content">
         <form id="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">

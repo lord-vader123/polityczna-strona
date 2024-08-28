@@ -19,7 +19,7 @@ if (isset($_COOKIE['id'])) {
 
 <body>
 
-  <?php include_once __DIR__ . '/php/header.php'; ?>
+  <?php include_once __DIR__ . '/php/html-snippets/header.php'; ?>
 
 
   <div class="content">

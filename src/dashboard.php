@@ -20,7 +20,7 @@ $user = new User($conn, (int) $userId);
 </head>
 <body>
 
-    <?php include_once __DIR__ . '/php/header.php'; ?>
+    <?php include_once __DIR__ . '/php/html-snippets/header.php'; ?>
     
     <div class="content">
         <?php
