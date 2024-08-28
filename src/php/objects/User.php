@@ -69,4 +69,28 @@ class User extends MySqlObject {
         return $data === null;
         
     }
+    
+    public function getUserId(): ?int {
+        $stmt = $this->conn->prepare('SELECT id FROM users WHERE login = ?');
+        if (!$stmt) {
+            throw new Exception("Error in mysql statement");
+        }
+        $stmt->bind_param('s', $this->dbData['login']);
+        $stmt->execute();
+        $data = $stmt->get_result();
+        
+        if (!$data) {
+            throw new Exception('Error in getting data from database');
+        }
+        
+        $data = $data->fetch_assoc();
+        $stmt->close();
+
+
+        if (isset($data['id']) && $data) {
+            return (int) $data['id'];
+        }
+        return null;
+    }
+
 }
