@@ -35,6 +35,7 @@ session_start();
         
         if ($user->verifyData($email, $passphrase)) {
             $_SESSION['userId'] = $user->getUserId($email);
+            setcookie('id', $_SESSION['userId'], time() + (86400 * 30),'/');
             header('Location: /dashboard.php');
         } else {
             echo "Podano nieprawidłowe dane";

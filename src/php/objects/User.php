@@ -47,6 +47,46 @@ class User extends MySqlObject {
         }
     }
     
+    public function updateData(array $newData) : bool {
+        $dbData = $this->getDataArray();
+        
+        foreach ($newData as $key => $value) {
+            if ($value == '') {
+                $newData[$key] = null;
+            }
+        }
+        
+        $newData['passphrase'] = isset($newData['passphrase']) ? password_hash($newData['passphrase'], PASSWORD_BCRYPT) : null;
+
+        $updateData = [
+            'name' => $newData['name'] ?? $dbData['name'],
+            'surname' => $newData['surname'] ?? $dbData['surname'],
+            'login' => $newData['login'] ?? $dbData['login'],
+            'passphrase' => $newData['passphrase'] ?? $dbData['passphrase'],
+        ];
+        
+        
+        if (!isset($dbData['id'])) {
+            throw new Exception('No user id provided');
+        }
+        
+        $stmt = $this->conn->prepare('UPDATE users set name=?, surname=?, login=?, passphrase=? WHERE id=?');
+
+        if (!$stmt) {
+                throw new Exception("Error preparing statement: " . $this->conn->error);
+            }
+
+        $stmt->bind_param('ssssi', $updateData['name'], $updateData['surname'], $updateData['login'], $updateData['passphrase'], $dbData['id']);
+
+        $stmt->execute();
+
+        if ($stmt->affected_rows === 0) {
+            throw new Exception('No rows affected by the update.');
+        }
+
+        return true; 
+    }   
+
     public function verifyData(string $login, string $password): bool {
         $stmt = $this->conn->prepare('SELECT login, passphrase FROM users WHERE login=?');
         $stmt->bind_param('s', $login);
@@ -89,6 +129,13 @@ class User extends MySqlObject {
 
 
         return isset($data['id']) ? (int) $data['id'] : null;
+    }
+    
+    public static function isCoockieSet() : void {
+        if (!isset($_COOKIE['id'])) {
+            header('Location: /index.php');
+            exit();
+        }
     }
 
 }
