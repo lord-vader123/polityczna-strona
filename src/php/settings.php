@@ -20,20 +20,38 @@ $userData = $user->getDataArray();
 
 <div class="content">
 
-<form action="<? htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
+<form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
 
 <p>Wypełnij dane które pragniesz zmienić</p>
 <label for="name">Imię</label>
-<input type="text" id="name">
+<input type="text" id="name" name="name">
 <label for="surname">Nazwisko</label>
-<input type="text" id="surname">
+<input type="text" id="surname" name="surname">
 <label for="email">Adres e-mail</label>
-<input type="email" id="email">
+<input type="email" id="email" name="email">
 <label for="passphrase">Hasło</label>
-<input type="password" id="passphrase">
+<input type="password" id="passphrase" name="passphrase">
 <button type="submit">Zatwierdź</button>
 
 </form>
+
+<?php
+
+$data = array(
+    'name' => $conn->real_escape_string(trim($_POST['name']) ?? null),
+    'surname' => $conn->real_escape_string(trim($_POST['surname']) ?? null),
+    'login' => $conn->real_escape_string(trim($_POST['email']) ?? null),
+    'passphrase' => $conn->real_escape_string(trim($_POST['passphrase']) ?? null),
+);
+
+
+try {
+    $user->updateData($data);
+    echo "Zaktualizowano Twoje dane!";
+} catch (Exception $e) {
+    echo "Nie zmieniono żadnych danych.";
+}
+?>
 
 </div>
     
