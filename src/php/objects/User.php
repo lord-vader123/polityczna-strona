@@ -90,5 +90,12 @@ class User extends MySqlObject {
 
         return isset($data['id']) ? (int) $data['id'] : null;
     }
+    
+    public static function isCoockieSet() : void {
+        if (!isset($_COOKIE['id'])) {
+            header('Location: /index.php');
+            exit();
+        }
+    }
 
 }
