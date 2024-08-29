@@ -51,7 +51,8 @@ session_start();
             // wysłanie do bazy danych 
         
             if ($user->sendToDb()) {
-                 $_SESSION['userId'] = $user->getUserId();
+                $_SESSION['userId'] = $user->getUserId();
+                setcookie('id', $_SESSION['userId'], time() + (86400 * 30),'/');
                 $conn->close();
                 header('Location: /dashboard.php');
                 exit();
