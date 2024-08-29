@@ -2,8 +2,9 @@
 include __DIR__ . '/php/scripts/login-mysql.php';
 include __DIR__ . '/php/objects/User.php';
 session_start();
-$userId = $_SESSION['userId'];
 User::isCoockieSet();
+$_SESSION['userId'] = $_SESSION['userId'] ?? $_COOKIE['id'];
+$userId = $_SESSION['userId'];
 $user = new User($conn, (int) $userId);
 $userData = $user->getDataArray();
 
