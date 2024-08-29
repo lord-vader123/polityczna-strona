@@ -3,8 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2024 at 02:16 PM
--- Generation Time: Aug 28, 2024 at 02:05 PM
+-- Generation Time: Aug 29, 2024 at 05:32 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -83,6 +82,7 @@ CREATE TABLE `politicians` (
   `party_affiliation` int(11) DEFAULT NULL,
   `committee_membership` int(11) DEFAULT NULL,
   `is_representative` tinyint(1) DEFAULT NULL,
+  `creator` int(11) DEFAULT NULL,
   `portrait` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -136,13 +136,15 @@ ALTER TABLE `party_affiliation`
 ALTER TABLE `politicians`
   ADD PRIMARY KEY (`id`),
   ADD KEY `party_affiliation` (`party_affiliation`),
-  ADD KEY `committee_membership` (`committee_membership`);
+  ADD KEY `committee_membership` (`committee_membership`),
+  ADD KEY `creator` (`creator`);
 
 --
 -- Indeksy dla tabeli `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `login` (`login`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -183,6 +185,7 @@ ALTER TABLE `politicians`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- Constraints for dumped tables
 --
@@ -204,9 +207,11 @@ ALTER TABLE `party_affiliation`
 --
 ALTER TABLE `politicians`
   ADD CONSTRAINT `politicians_ibfk_1` FOREIGN KEY (`party_affiliation`) REFERENCES `party_affiliation` (`id`),
-  ADD CONSTRAINT `politicians_ibfk_2` FOREIGN KEY (`committee_membership`) REFERENCES `comittee_membership` (`id`);
+  ADD CONSTRAINT `politicians_ibfk_2` FOREIGN KEY (`committee_membership`) REFERENCES `comittee_membership` (`id`),
+  ADD CONSTRAINT `politicians_ibfk_3` FOREIGN KEY (`creator`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
