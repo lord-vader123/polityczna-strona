@@ -15,7 +15,7 @@ session_start();
 </head>
 <body>
 
-<?php include_once __DIR__ . '/html-snippets/header-logged.html'; ?>
+<?php include_once __DIR__ . '/html-snippets/header.html'; ?>
 
 <div class="content">
     <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
