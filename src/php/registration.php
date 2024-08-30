@@ -21,13 +21,15 @@ session_start();
     <div class="content">
         <form id="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
             <label for="imie">Imię</label>
-            <input type="text" name="name">
+            <input type="text" name="name" id="name">
             <label for="nazwisko">Nazwisko</label>
-            <input type="text" name="surname">
+            <input type="text" name="surname" id=surname>
             <label for="login">Login/Mail</label>
-            <input type="email" name="login">
-            <label for="haslo">Hasło</label>
-            <input type="password" name="passphrase">
+            <input type="email" name="login" id=login>
+            <label for="passphrase">Hasło</label>
+            <input type="password" name="passphrase" id=passphrase>
+            <label for="passphrase2">Powtórz hasło</label>
+            <input type="password" name="passphrase2" id=passphrase2>
             <input type="submit" value="Zarejestruj się">
             <div id="error"></div>
         </form>
