@@ -10,6 +10,6 @@ class Party extends MySqlObject {
     }
 
     public function getTable(): string {
-        return "Parties";
+        return "parties";
     }
 }
