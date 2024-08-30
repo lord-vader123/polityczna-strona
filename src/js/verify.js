@@ -50,12 +50,9 @@ function isValid() {
     const inputs = document.querySelectorAll('input');
     const passwordField = document.getElementById('passphrase').value;
     const passwordField2 = document.getElementById('passphrase2').value;
-    console.log("Hasło 1: ", passwordField, " | Hasło 2: ", passwordField2);
 
     return isAllSelected(inputs) && isValidPassword(passwordField) && isEqual(passwordField, passwordField2);
 }
-
-isValid();
 
 document.getElementById('form').addEventListener('submit', (event) => {
     if (!isValid()) {
