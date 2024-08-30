@@ -23,8 +23,7 @@ $userData = $user->getDataArray();
     <?php include_once __DIR__ . '/php/html-snippets/header-logged.html'; ?>
     
     <div class="content">
-    <a href="/php/settings.php">Ustawienia</a>
-`       
+
     </div>
 
     
