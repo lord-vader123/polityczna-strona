@@ -27,4 +27,21 @@ class Party extends MySqlObject {
         }
 
     }
+    
+    public function sendToDb(): bool {
+        $dbData = $this->getDataArray();
+        $sql = "INSERT INTO ". $this->getTable() ."(full_name, short_name, logo) VALUES(?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);         
+        if ($stmt === false) {
+            throw new Exception('Failed to prepare SQL statement: ' . $this->conn->error);
+        }
+
+        $stmt->bind_param("sss", $dbData['full_name'], $dbData['short_name'], $dbData['logo']);
+        
+        if (!$stmt->execute()) {
+            throw new Exception('Failed to execute SQL statement: ' . $stmt->error);
+        }
+        $stmt->close();
+        return true;
+    }
 }
