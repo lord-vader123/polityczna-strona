@@ -16,7 +16,7 @@ $userData = $user->getDataArray();
 </head>
 <body>
 
-<?php include_once __DIR__ . '/php/html-snippets/header-logged.html'; ?>
+<?php include_once __DIR__ . '/html-snippets/header-logged.html'; ?>
 
 <div class="content">
 
