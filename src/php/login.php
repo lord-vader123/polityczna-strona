@@ -9,6 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/password-btn.css">
     <?php include_once __DIR__ . '/html-snippets/icons.html' ?>
     <title>Logowanie</title>
 </head>
@@ -21,7 +22,10 @@ session_start();
     <label for="email">Adres e-mail</label>
     <input type="email" name="email">
     <label for="passphrase">Hasło</label>
-    <input type="password" name="passphrase">
+    <div class="password-container">
+        <input type="password" name="passphrase" id="passphrase" class="password-input">
+        <button type="button" class="show-password-btn">🔒</button>
+    </div>
     <button type="submit">Zaloguj się</button>
     </form>
 
@@ -44,6 +48,7 @@ session_start();
 
     ?>
 
+<script src="/js/showPassword.js"></script>
 </div>
     
 </body>
