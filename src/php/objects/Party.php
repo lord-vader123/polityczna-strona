@@ -6,7 +6,7 @@ class Party extends MySqlObject {
     
     public function __construct(mysqli|null $conn, int|null $id) {
         parent::__construct($conn, $id);
-
+        
     }
 
     public function getTable(): string {
@@ -43,5 +43,24 @@ class Party extends MySqlObject {
         }
         $stmt->close();
         return true;
+    }
+    
+    public static function isExisting(mysqli $conn, string $shortName) : bool {
+        $stmt = $conn->prepare('SELECT count(*) FROM party WHERE short_name = ?');
+
+        if (!$stmt) {
+            throw new Exception('Error preparing statement');
+        }
+
+        $stmt->bind_param('s', $shortName);
+        $stmt->execute();
+        
+        if (!$stmt) {
+            throw new Exception('Error executing statement');
+        }
+       
+        $result = $stmt->get_result()->fetch_array(MYSQLI_NUM);
+        $stmt->close();
+        return $result[0] > 0;
     }
 }
