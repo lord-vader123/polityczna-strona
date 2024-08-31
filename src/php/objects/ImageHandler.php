@@ -1,6 +1,6 @@
 <?php
 
-class FileHandler {
+class ImageHandler {
     private string $filePath, $fileType; 
     private ?string $finalPath = null;
     private array $file;
