@@ -1,7 +1,8 @@
 <?php
 
 class FileHandler {
-    private string $filePath, $fileType, $finalPath;
+    private string $filePath, $fileType; 
+    private ?string $finalPath = null;
     private array $file;
     
     public function __construct(string $dirName, array $file) {
