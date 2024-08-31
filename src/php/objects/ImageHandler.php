@@ -10,23 +10,24 @@ class ImageHandler {
         if (!isset($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
             throw new Exception('Invalid file data provided');
         }
+        $this->fileType = pathinfo(basename($file['name']), PATHINFO_EXTENSION);
+        
+        $this->filePath = __DIR__ . '/../../assets/'. $dirName . '/';
 
-
-        $this->filePath = __DIR__ . '/../../assets/'. $dirName;
         $this->file = $file;
 
-        $finfo = new finfo(FILEINFO_EXTENSION);
-        $this->fileType = $finfo->file($file['name']);
-        unset($finfo);
+        echo $this->file['tmp_name'];
+
     }
     
     public function saveFile() : bool {
         $maxAttempts = 20;
         $currentAttempt = 0;
+        
         while ($maxAttempts > $currentAttempt) {
             $savePath = $this->filePath . $this->generateRandomName(20) . '.' . $this->fileType ;
             if (!file_exists($savePath)) {
-                if (move_uploaded_file($this->file['tmp_name'], $savePath)) {
+                if (move_uploaded_file(realpath($this->file['tmp_name']), $savePath)) {
                     $this->finalPath = $savePath;
                     return true;
                 } else {
