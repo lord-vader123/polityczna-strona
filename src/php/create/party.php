@@ -31,40 +31,42 @@ include __DIR__ . '/../objects/Party.php';
         <button type="submit">Zatwierdź</button>
     </form>
 
-    <?php
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['logo']) && $_FILES['logo']['error'] == UPLOAD_ERR_OK) {
+    <div id="error">
+        <?php
+        ini_set('display_errors', 1);
+        error_reporting(E_ALL);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['logo']) && $_FILES['logo']['error'] == UPLOAD_ERR_OK) {
         
-        if ($_FILES['logo']['size'] > 1073741824) {
-            echo "Plik jest za duży!";
-            exit();
+            if ($_FILES['logo']['size'] > 1073741824) {
+                echo "Plik jest za duży!";
+                exit();
+            }
+            if (Party::isExisting($conn, $_POST['short_name'])) {
+                echo "Partia o takim skrótcie już istnieje!";
+                exit();
+            }
+        
+            $imageHandler = new ImageHandler('party', $_FILES['logo']);
+            $imageHandler->saveFile();
+        
+            $data = [
+                'full_name' => $conn->real_escape_string($_POST['full_name']),
+                'short_name' => $conn->real_escape_string($_POST['short_name']),
+                'logo' => $imageHandler->getFinalPath(),
+            ];
+        
+            try {
+                $party = new Party($conn, null);
+                $party->setData($data);
+                $party->sendToDb();
+            } catch (Exception $e) {
+                echo 'Error: '. $e->getMessage() .'<br>';
+            }
         }
+          ?>
+    </div>
 
-        if (Party::isExisting($conn, $_POST['short_name'])) {
-            echo "Partia o takim skrótcie już istnieje!";
-            exit();
-        }
-        
-        $imageHandler = new ImageHandler('party', $_FILES['logo']); 
-        $imageHandler->saveFile();
-        
-        $data = [
-            'full_name' => $conn->real_escape_string($_POST['full_name']),
-            'short_name' => $conn->real_escape_string($_POST['short_name']),
-            'logo' => $imageHandler->getFinalPath(),
-        ];
-        
-        try {
-            $party = new Party($conn, null);
-            $party->setData($data);
-            $party->sendToDb();
-        } catch (Exception $e) {
-            echo 'Error: '. $e->getMessage() .'<br>';
-        }
-    }   
-      ?>
-
+    <script src="/js/veryfyAllInputs.js"></script>
 
     </div>
 </body>

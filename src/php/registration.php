@@ -42,8 +42,10 @@ session_start();
                 <button type="button" class="show-password-btn">🔒</button>
             </div>
             <input type="submit" value="Zarejestruj się">
-            <div id="error"></div>
         </form>
+
+        <div id="error">
+
         <?php
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = array(
@@ -74,6 +76,7 @@ session_start();
             }
         }
         ?>
+        </div>
     </div>
     <script src="/js/verify.js"></script>
     <script src="/js/showPassword.js"></script>
