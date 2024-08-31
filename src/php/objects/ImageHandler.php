@@ -15,9 +15,6 @@ class ImageHandler {
         $this->filePath = __DIR__ . '/../../assets/'. $dirName . '/';
 
         $this->file = $file;
-
-        echo $this->file['tmp_name'];
-
     }
     
     public function saveFile() : bool {
