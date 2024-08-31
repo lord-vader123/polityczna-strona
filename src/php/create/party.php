@@ -22,8 +22,8 @@ include __DIR__ . '/../objects/Party.php';
 
 
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
-        <label for="long_name">Pełna nazwa</label>        
-        <input type="text" name="long_name" id="long_name">
+        <label for="full_name">Pełna nazwa</label>        
+        <input type="text" name="full_name" id="long_name">
         <label for="short_name">Skrót nazwy</label>
         <input type="text" name="short_name" id="short_name">
         <label for="logo">Logo partii (nie większe niż 1gb)</label>
@@ -39,7 +39,7 @@ include __DIR__ . '/../objects/Party.php';
         $imageHandler->saveFile();
         
         $data = [
-            'long_name' => $conn->real_escape_string($_POST['long_name']),
+            'full_name' => $conn->real_escape_string($_POST['long_name']),
             'short_name' => $conn->real_escape_string($_POST['short_name']),
             'logo' => $imageHandler->getFinalPath(),
         ];
