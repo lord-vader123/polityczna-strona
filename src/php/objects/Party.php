@@ -10,7 +10,7 @@ class Party extends MySqlObject {
     }
 
     public function getTable(): string {
-        return "parties";
+        return "party";
     }
     
     public function setData(array $data): bool {
