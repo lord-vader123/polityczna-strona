@@ -43,7 +43,7 @@ class User extends MySqlObject {
             $this->setDataArray($dbData);
             return true;
         } else {
-            throw new Exception('Array has wrong ammount of fields');
+            throw new Exception('Wrong argument provided');
         }
     }
     
