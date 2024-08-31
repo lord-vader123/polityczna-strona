@@ -1,7 +1,7 @@
 <?php
 
 class FileHandler {
-    private string $filePath, $fileType;
+    private string $filePath, $fileType, $finalPath;
     private array $file;
     
     public function __construct(string $dirName, array $file) {
@@ -25,11 +25,20 @@ class FileHandler {
         while ($maxAttempts > $currentAttempt) {
             $savePath = $this->filePath . $this->generateRandomName(20) . '.' . $this->fileType ;
             if (!file_exists($savePath)) {
-                return move_uploaded_file($this->file['tmp_name'], $savePath);
+                if (move_uploaded_file($this->file['tmp_name'], $savePath)) {
+                    $this->finalPath = $savePath;
+                    return true;
+                } else {
+                    throw new Exception('Failed saving file');
+                }
             }
             $currentAttempt++;
         }
         return false;
+    }
+    
+    public function getFinalPath() : string {
+        return $this->finalPath ?? throw new Exception('Final path not set');
     }
     
     private function generateRandomName(int $lenght) : string {
