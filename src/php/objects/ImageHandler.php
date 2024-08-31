@@ -49,9 +49,5 @@ class ImageHandler {
             $name .= $chars[random_int(0, strlen($chars) -1)];
         }
         return trim($name);
-
     }
-
-    
-    
 }
