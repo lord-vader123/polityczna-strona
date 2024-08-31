@@ -9,21 +9,21 @@ include __DIR__ . '/../objects/Party.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include __DIR__ . "../html-snippets/icons.html"; ?>
+    <?php include_once __DIR__ . "/../html-snippets/icons.html" ?>
     <link rel="stylesheet" href="/css/style.css">
     <title>Stwórz partię</title>
 </head>
 
 <body>
 
-    <?php include __DIR__ . '/../html-snippets/header-logged.html'; ?>
+    <?php include_once __DIR__ . '/../html-snippets/header-logged.html'; ?>
 
     <div class="content">
 
 
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
         <label for="full_name">Pełna nazwa</label>        
-        <input type="text" name="full_name" id="long_name">
+        <input type="text" name="full_name" id="full_name">
         <label for="short_name">Skrót nazwy</label>
         <input type="text" name="short_name" id="short_name">
         <label for="logo">Logo partii (nie większe niż 1gb)</label>
@@ -62,10 +62,8 @@ include __DIR__ . '/../objects/Party.php';
         } catch (Exception $e) {
             echo 'Error: '. $e->getMessage() .'<br>';
         }
-    } else {
-        echo "Błąd";
-    }
-    ?>
+    }   
+      ?>
 
 
     </div>
