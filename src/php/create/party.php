@@ -32,7 +32,8 @@ include __DIR__ . '/../objects/Party.php';
     </form>
 
     <?php
-
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['logo']) && $_FILES['logo']['error'] == UPLOAD_ERR_OK) {
         
         if ($_FILES['logo']['size'] > 1073741824) {
@@ -40,7 +41,7 @@ include __DIR__ . '/../objects/Party.php';
             exit();
         }
 
-        if (Party::isExisting($conn, $data['short_name'])) {
+        if (Party::isExisting($conn, $_POST['short_name'])) {
             echo "Partia o takim skrótcie już istnieje!";
             exit();
         }
@@ -49,7 +50,7 @@ include __DIR__ . '/../objects/Party.php';
         $imageHandler->saveFile();
         
         $data = [
-            'full_name' => $conn->real_escape_string($_POST['long_name']),
+            'full_name' => $conn->real_escape_string($_POST['full_name']),
             'short_name' => $conn->real_escape_string($_POST['short_name']),
             'logo' => $imageHandler->getFinalPath(),
         ];
