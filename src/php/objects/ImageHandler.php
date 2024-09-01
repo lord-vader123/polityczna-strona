@@ -6,6 +6,12 @@ class ImageHandler {
     private array $file;
     private final static int $MAX_SIZE = 52428800;
     
+    /**
+     * @param $dirName Name of the target directory (placed in /assets/) 
+     * @param $file $_FILES['name of the input that gets the file']
+     * @return void Doesn't return a value 
+     *  */ 
+
     public function __construct(string $dirName, array $file) {
         
         if (!isset($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
@@ -19,6 +25,7 @@ class ImageHandler {
     }
     
     public function saveFile() : bool {
+        $this->checkSize();
         $maxAttempts = 20;
         $currentAttempt = 0;
         
