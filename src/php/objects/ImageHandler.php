@@ -58,7 +58,7 @@ class ImageHandler {
     }
     
     private function checkSize() : void {
-        if ($this->file['size'] > $this->MAX_SIZE) {
+        if ($this->file['size'] > self::$MAX_SIZE) {
             echo "Plik jest za duży!";
             exit();
         }
