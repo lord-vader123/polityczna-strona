@@ -41,6 +41,8 @@ session_start();
                 <input type="password" name="passphrase2" id="passphrase2" class="password-input">
                 <button type="button" class="show-password-btn">🔒</button>
             </div>
+            <label for="coockies">Nie wylogowuj mnie</label>
+            <input type="checkbox" name="coockies" id="coockies">
             <input type="submit" value="Zarejestruj się">
         </form>
 
@@ -66,8 +68,13 @@ session_start();
             // wysłanie do bazy danych 
         
             if ($user->sendToDb()) {
-                $_SESSION['userId'] = $user->getUserId();
-                setcookie('id', $_SESSION['userId'], time() + (86400 * 30),'/');
+                if (isset($_POST['coockies']) && $_POST['coockies'] == 1) {
+                    setcookie('login', $data['login'], time() + (86400 * 30),'/');
+                    setcookie('passphrase', $data['passphrase'], time() + (86400 * 30),'/');
+                }
+                $_SESSION['login'] = $data['login'];
+                $_SESSION['passphrase'] = $data['passphrase'];
+
                 $conn->close();
                 header('Location: /dashboard.php');
                 exit();
