@@ -4,6 +4,7 @@ class ImageHandler {
     private string $filePath, $fileType; 
     private ?string $finalPath = null;
     private array $file;
+    private final static int $MAX_SIZE = 52428800;
     
     public function __construct(string $dirName, array $file) {
         
@@ -47,5 +48,12 @@ class ImageHandler {
             $name .= $chars[random_int(0, strlen($chars) -1)];
         }
         return trim($name);
+    }
+    
+    private function checkSize() : void {
+        if ($this->file['size'] > $this->MAX_SIZE) {
+            echo "Plik jest za duży!";
+            exit();
+        }
     }
 }
