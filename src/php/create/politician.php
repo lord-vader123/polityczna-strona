@@ -47,7 +47,7 @@ include_once __DIR__ . '/../scripts/login-mysql.php';
             $parties = new Table($conn, "party");
             $data = $parties->getTableArray();
             foreach ($data as $row) {
-                echo '<option value="' . $row['full_name'] . '">';
+                echo '<option value="' . $row['id'] . '">' . $row['full_name']. '</option>';
             }
             unset($parties);
             ?>
@@ -56,12 +56,12 @@ include_once __DIR__ . '/../scripts/login-mysql.php';
 
         <datalist id="committee">            
             <?php
-            $parties = new Table($conn, "committee");
-            $data = $parties->getTableArray();
+            $committees = new Table($conn, "committee");
+            $data = $committees->getTableArray();
             foreach ($data as $row) {
-                echo '<option value="' . $row['name'] . '">';
+                echo '<option value="' . $row['id'] . '">' . $row['name']. '</option>';
             }
-            unset($parties);
+            unset($committees);
             ?>
         </datalist>
 
