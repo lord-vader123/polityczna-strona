@@ -4,7 +4,7 @@ class ImageHandler {
     private string $filePath, $fileType; 
     private ?string $finalPath = null;
     private array $file;
-    private final static int $MAX_SIZE = 52428800;
+    private static int $MAX_SIZE = 52428800;
     
     /**
      * @param $dirName Name of the target directory (placed in /assets/) 
