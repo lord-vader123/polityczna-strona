@@ -33,18 +33,7 @@ include __DIR__ . '/../objects/Party.php';
 
     <div id="error">
         <?php
-        ini_set('display_errors', 1);
-        error_reporting(E_ALL);
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['logo']) && $_FILES['logo']['error'] == UPLOAD_ERR_OK) {
-        
-            if ($_FILES['logo']['size'] > 1073741824) {
-                echo "Plik jest za duży!";
-                exit();
-            }
-            if (Party::isExisting($conn, $_POST['short_name'])) {
-                echo "Partia o takim skrótcie już istnieje!";
-                exit();
-            }
         
             $imageHandler = new ImageHandler('party', $_FILES['logo']);
             $imageHandler->saveFile();
