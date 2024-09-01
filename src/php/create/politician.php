@@ -96,6 +96,7 @@ include_once __DIR__ . '/../scripts/login-mysql.php';
 
     </div>
 
+<script src="/js/veryfyAllInputs.js"></script>
 </body>
 
 </html>
