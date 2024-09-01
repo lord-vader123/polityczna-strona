@@ -131,11 +131,60 @@ class User extends MySqlObject {
         return isset($data['id']) ? (int) $data['id'] : null;
     }
     
-    public static function isCoockieSet() : void {
-        if (!isset($_COOKIE['id'])) {
-            header('Location: /index.php');
-            exit();
+    public static function getUserIdByCoockies(mysqli $conn) : int | false {
+        if (isset($_COOKIE['login']) && isset($_COOKIE['passphrase'])) {
+            $login = $_COOKIE['login'];
+            $passphrase = $_COOKIE['passphrase'];
+
+            $stmt = $conn->prepare('SELECT id, passphrase FROM users WHERE login = ?');
+
+            if (!$stmt) {
+                throw new Exception('Error preparing statement');
+            }
+
+            $stmt->bind_param('s', $login);
+            $stmt->execute();
+            
+            $data = $stmt->get_result()->fetch_assoc();
+            
+            if (!$data) {
+                return false;
+            }
+
+            if (password_verify($passphrase, $data['passphrase'])) {
+                return (int) $data['id'];
+            }
         }
+        return false;
+        
+
+    }
+
+    public static function getUserIdBySession(mysqli $conn) : int | false {
+        if (isset($_SESSION['login']) && isset($_SESSION['passphrase'])) {
+            $login = $_SESSION['login'];
+            $passphrase = $_SESSION['passphrase'];
+
+            $stmt = $conn->prepare('SELECT id, passphrase FROM users WHERE login = ?');
+
+            if (!$stmt) {
+                throw new Exception('Error preparing statement');
+            }
+
+            $stmt->bind_param('s', $login);
+            $stmt->execute();
+            
+            $data = $stmt->get_result()->fetch_assoc();
+            
+            if (!$data) {
+                return false;
+            }
+
+            if (password_verify($passphrase, $data['passphrase'])) {
+                return (int) $data['id'];
+            }
+        }
+        return false;
     }
 
 }
