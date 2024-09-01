@@ -68,31 +68,32 @@ include_once __DIR__ . '/../scripts/login-mysql.php';
             </datalist>
         </form>
         
-        <?php
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['portrait']) && $_FILES['portrait']['error'] == UPLOAD_ERR_OK) {
-
-        
-            $imageHandler = new ImageHandler('politician', $_FILES['portrait']);
-            $imageHandler->saveFile();
-            $imagePath = $imageHandler->getFinalPath();
+        <div id="error">
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['portrait']) && $_FILES['portrait']['error'] == UPLOAD_ERR_OK) {
             
-            $data = [
-                'name' => $conn->real_escape_string($_POST['name']),
-                'sursurname' => $conn->real_escape_string($_POST['surname']),
-                'party' => $conn->real_escape_string($_POST['party']),
-                'committee' => $conn->real_escape_string($_POST['committee']),
-                'portrait' => $imagePath,
-            ];
+                $imageHandler = new ImageHandler('politician', $_FILES['portrait']);
+                $imageHandler->saveFile();
+                $imagePath = $imageHandler->getFinalPath();
             
-            try {
-                $politician = new Politician($conn, null);
-                $politician->setData($data);
-                $politician->sendToDb();
-            } catch (Exception $e) {
-                echo "An error has occurred";
+                $data = [
+                    'name' => $conn->real_escape_string($_POST['name']),
+                    'sursurname' => $conn->real_escape_string($_POST['surname']),
+                    'party' => $conn->real_escape_string($_POST['party']),
+                    'committee' => $conn->real_escape_string($_POST['committee']),
+                    'portrait' => $imagePath,
+                ];
+            
+                try {
+                    $politician = new Politician($conn, null);
+                    $politician->setData($data);
+                    $politician->sendToDb();
+                } catch (Exception $e) {
+                    echo "An error has occurred";
+                }
             }
-        }
-        ?>
+            ?>
+        </div>
 
     </div>
 
