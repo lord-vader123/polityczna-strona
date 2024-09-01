@@ -37,7 +37,7 @@ class Politician extends MySqlObject {
         
         $data = $this->getDataArray();
         
-        $stmt->bind_param('sssss', $data['name'], $data['surname'], $data['party_affillation'], $data['committee_membership'], $data['portrait']);
+        $stmt->bind_param('ssiis', $data['name'], $data['surname'], $data['party_affillation'], $data['committee_membership'], $data['portrait']);
 
         if ($stmt->execute()) {
             return true;
