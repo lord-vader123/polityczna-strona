@@ -1,4 +1,8 @@
-<?
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+include_once __DIR__ . '/../objects/Table.php';
 include_once __DIR__ . '/../objects/Politician.php';
 include_once __DIR__ . '/../objects/ImageHandler.php';
 include_once __DIR__ . '/../scripts/login-mysql.php';
@@ -39,12 +43,26 @@ include_once __DIR__ . '/../scripts/login-mysql.php';
         <button type="submit">Zatwierdź</button>
 
         <datalist id="party">
-            <option value=""></option>
-            
+            <?php
+            $parties = new Table($conn, "party");
+            $data = $parties->getTableArray();
+            foreach ($data as $row) {
+                echo '<option value="' . $row['full_name'] . '">';
+            }
+            unset($parties);
+            ?>
         </datalist>
 
+
         <datalist id="committee">            
-            <option value="">        
+            <?php
+            $parties = new Table($conn, "committee");
+            $data = $parties->getTableArray();
+            foreach ($data as $row) {
+                echo '<option value="' . $row['name'] . '">';
+            }
+            unset($parties);
+            ?>
         </datalist>
 
 
