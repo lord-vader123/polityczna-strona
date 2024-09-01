@@ -189,9 +189,9 @@ class User extends MySqlObject {
     
     public static function getUserIdByWhatever(mysqli $conn) : int | false {
         
-        $id = User::getUserIdBySession($conn);
+        $id = Self::getUserIdBySession($conn);
         if (!$id) {
-            $id = User::getUserIdByCoockies($conn);
+            $id = Self::getUserIdByCoockies($conn);
         }
         
         return (bool) $id ? (int) $id : false;
