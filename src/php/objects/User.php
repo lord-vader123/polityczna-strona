@@ -131,7 +131,7 @@ class User extends MySqlObject {
         return isset($data['id']) ? (int) $data['id'] : null;
     }
     
-    public static function getUserIdByCoockies(mysqli $conn) : int | false {
+    private static function getUserIdByCoockies(mysqli $conn) : int | false {
         if (isset($_COOKIE['login']) && isset($_COOKIE['passphrase'])) {
             $login = $_COOKIE['login'];
             $passphrase = $_COOKIE['passphrase'];
@@ -160,7 +160,7 @@ class User extends MySqlObject {
 
     }
 
-    public static function getUserIdBySession(mysqli $conn) : int | false {
+    private static function getUserIdBySession(mysqli $conn) : int | false {
         if (isset($_SESSION['login']) && isset($_SESSION['passphrase'])) {
             $login = $_SESSION['login'];
             $passphrase = $_SESSION['passphrase'];
@@ -188,6 +188,7 @@ class User extends MySqlObject {
     }
     
     public static function getUserIdByWhatever(mysqli $conn) : int | false {
+        
         $id = User::getUserIdBySession($conn);
         if (!$id) {
             $id = User::getUserIdByCoockies($conn);
