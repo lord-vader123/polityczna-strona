@@ -30,7 +30,7 @@ class Politician extends MySqlObject {
     }
     
     public function sendToDb(): bool {
-        $stmt = $this->conn->prepare('INSERT INTO ' . "politicians" . '(name, surname, party_affillation, committee_membership, portrait) VALUES (?, ?, ?, ?, ?)');
+        $stmt = $this->conn->prepare('INSERT INTO ' . "politicians" . '(name, surname, party_affiliation, committee_membership, portrait) VALUES (?, ?, ?, ?, ?)');
         if (!$stmt) {
             throw new Exception('Preparing statement failed');
         }

@@ -36,8 +36,8 @@ include_once __DIR__ . '/../scripts/login-mysql.php';
             <input list="party" name="party">
 
 
-            <label for="committee">Komitet wyborczy</label>
-            <input list="committee" name="committee">
+            <label for="comittee">Komitet wyborczy</label>
+            <input list="comittee" name="comittee">
 
             <label for="portrait">Portret polityka</label>
             <input type="file" name="portrait" id="portrait">
@@ -54,16 +54,16 @@ include_once __DIR__ . '/../scripts/login-mysql.php';
                 unset($parties);
                 ?>
             </datalist>
+            
 
-
-            <datalist id="committee">
+            <datalist id="comittee">
                 <?php
-                $committees = new Table($conn, "committee");
-                $data = $committees->getTableArray();
+                $comittees = new Table($conn, "comittee");
+                $data = $comittees->getTableArray();
                 foreach ($data as $row) {
                     echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
                 }
-                unset($committees);
+                unset($comittees);
                 ?>
             </datalist>
         </form>
@@ -78,9 +78,9 @@ include_once __DIR__ . '/../scripts/login-mysql.php';
             
                 $data = [
                     'name' => $conn->real_escape_string($_POST['name']),
-                    'sursurname' => $conn->real_escape_string($_POST['surname']),
-                    'party' => $conn->real_escape_string($_POST['party']),
-                    'committee' => $conn->real_escape_string($_POST['committee']),
+                    'surname' => $conn->real_escape_string($_POST['surname']),
+                    'party_affillation' => $conn->real_escape_string($_POST['party']),
+                    'committee_membership' => $conn->real_escape_string($_POST['comittee']),
                     'portrait' => $imagePath,
                 ];
             
@@ -89,7 +89,7 @@ include_once __DIR__ . '/../scripts/login-mysql.php';
                     $politician->setData($data);
                     $politician->sendToDb();
                 } catch (Exception $e) {
-                    echo "An error has occurred";
+                echo 'An error has occurred:'. $e->getMessage() .'<br>';
                 }
             }
             ?>
