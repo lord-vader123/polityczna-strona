@@ -1,11 +1,14 @@
 <?php
+session_start();
 include __DIR__ . '/php/scripts/login-mysql.php';
 include __DIR__ . '/php/objects/User.php';
-session_start();
-User::isCoockieSet();
-$_SESSION['userId'] = $_SESSION['userId'] ?? $_COOKIE['id'];
-$userId = $_SESSION['userId'];
-$user = new User($conn, (int) $userId);
+$id = User::getUserIdByWhatever($conn);
+if (!$id) {
+    header('Location: /index.php');
+    exit();
+}
+
+$user = new User($conn, (int) $id);
 $userData = $user->getDataArray();
 
 ?>
