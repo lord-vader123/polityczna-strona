@@ -18,8 +18,7 @@ class Politician extends MySqlObject {
             $data = [
                 "name" => $data["name"],
                 "surname" => $data["surname"],
-                "party_affillation" => $data["party_affillation"],
-                "committee_membership" => $data["committee_membership"],
+                "creator" => $data["creator"],
                 "portrait" => $data["portrait"],
             ];
             $this->setDataArray($data);
@@ -30,14 +29,14 @@ class Politician extends MySqlObject {
     }
     
     public function sendToDb(): bool {
-        $stmt = $this->conn->prepare('INSERT INTO ' . "politicians" . '(name, surname, party_affiliation, committee_membership, portrait) VALUES (?, ?, ?, ?, ?)');
+        $stmt = $this->conn->prepare('INSERT INTO ' . "politicians" . '(name, surname, creator, portrait) VALUES (?, ?, ?, ?, ?)');
         if (!$stmt) {
             throw new Exception('Preparing statement failed');
         }
         
         $data = $this->getDataArray();
         
-        $stmt->bind_param('ssiis', $data['name'], $data['surname'], $data['party_affillation'], $data['committee_membership'], $data['portrait']);
+        $stmt->bind_param('ssis', $data['name'], $data['surname'], $data['creator'], $data['portrait']);
 
         if ($stmt->execute()) {
             return true;
