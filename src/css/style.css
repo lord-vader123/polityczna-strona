@@ -99,7 +99,7 @@ height: 75px;
   }
 
   .navbar a:hover, .dropdown:hover .dropbtn {       /* Zmiana koloru po najechaniu na element*/
-    background-color: rgb(0, 137, 16);
+    background-color: rgb(255, 0, 0);
   }
   
   .dropdown-content {       /* Zawartosc paska*/
