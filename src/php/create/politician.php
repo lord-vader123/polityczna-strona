@@ -36,8 +36,8 @@ include_once __DIR__ . '/../scripts/login-mysql.php';
             <input list="party" name="party">
 
 
-            <label for="comittee">Komitet wyborczy</label>
-            <input list="comittee" name="comittee">
+            <label for="committee">Komitet wyborczy</label>
+            <input list="committee" name="committee">
 
             <label for="portrait">Portret polityka</label>
             <input type="file" name="portrait" id="portrait">
@@ -56,14 +56,14 @@ include_once __DIR__ . '/../scripts/login-mysql.php';
             </datalist>
             
 
-            <datalist id="comittee">
+            <datalist id="committee">
                 <?php
-                $comittees = new Table($conn, "comittee");
-                $data = $comittees->getTableArray();
+                $committees = new Table($conn, "committee");
+                $data = $committees->getTableArray();
                 foreach ($data as $row) {
                     echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
                 }
-                unset($comittees);
+                unset($committees);
                 ?>
             </datalist>
         </form>
@@ -80,7 +80,7 @@ include_once __DIR__ . '/../scripts/login-mysql.php';
                     'name' => $conn->real_escape_string($_POST['name']),
                     'surname' => $conn->real_escape_string($_POST['surname']),
                     'party_affillation' => $conn->real_escape_string($_POST['party']),
-                    'committee_membership' => $conn->real_escape_string($_POST['comittee']),
+                    'committee_membership' => $conn->real_escape_string($_POST['committee']),
                     'portrait' => $imagePath,
                 ];
             
