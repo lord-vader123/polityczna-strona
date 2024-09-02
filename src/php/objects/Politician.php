@@ -68,7 +68,7 @@ class Politician extends MySqlObject {
             throw new Exception('Error preparing statement');
         }
         
-        $stmt->bind_param('i', $committeId);
+        $stmt->bind_param('i', $partyId);
         
         if (!$stmt->execute()) {
             throw new Exception('Something broke while executing query');
