@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 include_once __DIR__ . '/../objects/Table.php';
 include_once __DIR__ . '/../objects/Politician.php';
+include_once __DIR__ . '/../objects/User.php';
 include_once __DIR__ . '/../objects/ImageHandler.php';
 include_once __DIR__ . '/../scripts/login-mysql.php';
 ?>
@@ -71,7 +72,7 @@ include_once __DIR__ . '/../scripts/login-mysql.php';
         <div id="error">
             <?php
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['portrait']) && $_FILES['portrait']['error'] == UPLOAD_ERR_OK) {
-            
+                
                 $imageHandler = new ImageHandler('politician', $_FILES['portrait']);
                 $imageHandler->saveFile();
                 $imagePath = $imageHandler->getFinalPath();
@@ -79,9 +80,8 @@ include_once __DIR__ . '/../scripts/login-mysql.php';
                 $data = [
                     'name' => $conn->real_escape_string($_POST['name']),
                     'surname' => $conn->real_escape_string($_POST['surname']),
-                    'party_affillation' => $conn->real_escape_string($_POST['party']),
-                    'committee_membership' => $conn->real_escape_string($_POST['committee']),
                     'portrait' => $imagePath,
+                    'creator' => (int) User::getUserIdByWhatever($conn),
                 ];
             
                 try {
