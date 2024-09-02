@@ -16,7 +16,7 @@ class Committee extends MySqlObject {
     public function setData(array $data): bool {
         if (is_array($data) && count($data) == 1) {
             $data = [
-                'name' => $data['name'],
+                'name' => "KW " . $data['name'],
             ];
             $this->setDataArray($data);
             return true;
