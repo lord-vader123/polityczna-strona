@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `comittee`
+-- Struktura tabeli dla tabeli `committee`
 --
 
-CREATE TABLE `comittee` (
+CREATE TABLE `committee` (
   `id` int(11) NOT NULL,
   `name` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -35,10 +35,10 @@ CREATE TABLE `comittee` (
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `comittee_membership`
+-- Struktura tabeli dla tabeli `committee_membership`
 --
 
-CREATE TABLE `comittee_membership` (
+CREATE TABLE `committee_membership` (
   `id` int(11) NOT NULL,
   `comitette_id` int(11) DEFAULT NULL,
   `joining_date` date DEFAULT NULL
@@ -105,15 +105,15 @@ CREATE TABLE `users` (
 --
 
 --
--- Indeksy dla tabeli `comittee`
+-- Indeksy dla tabeli `committee`
 --
-ALTER TABLE `comittee`
+ALTER TABLE `committee`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeksy dla tabeli `comittee_membership`
+-- Indeksy dla tabeli `committee_membership`
 --
-ALTER TABLE `comittee_membership`
+ALTER TABLE `committee_membership`
   ADD PRIMARY KEY (`id`),
   ADD KEY `comitette_id` (`comitette_id`);
 
@@ -151,15 +151,15 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `comittee`
+-- AUTO_INCREMENT for table `committee`
 --
-ALTER TABLE `comittee`
+ALTER TABLE `committee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `comittee_membership`
+-- AUTO_INCREMENT for table `committee_membership`
 --
-ALTER TABLE `comittee_membership`
+ALTER TABLE `committee_membership`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -191,10 +191,10 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `comittee_membership`
+-- Constraints for table `committee_membership`
 --
-ALTER TABLE `comittee_membership`
-  ADD CONSTRAINT `comittee_membership_ibfk_1` FOREIGN KEY (`comitette_id`) REFERENCES `comittee` (`id`);
+ALTER TABLE `committee_membership`
+  ADD CONSTRAINT `committee_membership_ibfk_1` FOREIGN KEY (`comitette_id`) REFERENCES `committee` (`id`);
 
 --
 -- Constraints for table `party_affiliation`
@@ -207,7 +207,7 @@ ALTER TABLE `party_affiliation`
 --
 ALTER TABLE `politicians`
   ADD CONSTRAINT `politicians_ibfk_1` FOREIGN KEY (`party_affiliation`) REFERENCES `party_affiliation` (`id`),
-  ADD CONSTRAINT `politicians_ibfk_2` FOREIGN KEY (`committee_membership`) REFERENCES `comittee_membership` (`id`),
+  ADD CONSTRAINT `politicians_ibfk_2` FOREIGN KEY (`committee_membership`) REFERENCES `committee_membership` (`id`),
   ADD CONSTRAINT `politicians_ibfk_3` FOREIGN KEY (`creator`) REFERENCES `users` (`id`);
 COMMIT;
 

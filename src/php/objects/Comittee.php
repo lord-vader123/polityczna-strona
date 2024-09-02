@@ -27,7 +27,7 @@ class Committee extends MySqlObject {
     
     public function sendToDb(): bool {
         $data = $this->getDataArray();
-        $stmt = $this->conn->prepare('INSERT INTO comittee (name) VALUES (?)');
+        $stmt = $this->conn->prepare('INSERT INTO committee (name) VALUES (?)');
         if (!$stmt) {
             throw new Exception('Error preparing statement');
         }
