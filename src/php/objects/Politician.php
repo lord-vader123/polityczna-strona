@@ -44,4 +44,37 @@ class Politician extends MySqlObject {
         }
         return false;
     }
+
+    
+    public function createCommitteeMembership(int $committeId) : bool {
+        $stmt = $this->conn->prepare('INSERT INTO committee_membership (committee_id, joining_date) VALUES (?, CURDATE())');
+        if (!$stmt) {
+            throw new Exception('Error preparing statement');
+        }
+        
+        $stmt->bind_param('i', $committeId);
+        
+        if (!$stmt->execute()) {
+            throw new Exception('Something broke while executing query');
+        }
+        
+        $stmt->close();
+        return true;
+    }
+
+    public function createPartyAffiliation(int $partyId) : bool {
+        $stmt = $this->conn->prepare('INSERT INTO party_affiliation (party_id, joining_date) VALUES (?, CURDATE())');
+        if (!$stmt) {
+            throw new Exception('Error preparing statement');
+        }
+        
+        $stmt->bind_param('i', $committeId);
+        
+        if (!$stmt->execute()) {
+            throw new Exception('Something broke while executing query');
+        }
+        
+        $stmt->close();
+        return true;
+    }
 }
