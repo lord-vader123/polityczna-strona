@@ -46,12 +46,12 @@ class Politician extends MySqlObject {
 
     
     public function createCommitteeMembership(int $committeId) : bool {
-        $stmt = $this->conn->prepare('INSERT INTO committee_membership (committee_id, joining_date) VALUES (?, CURDATE())');
+        $stmt = $this->conn->prepare('INSERT INTO committee_membership (politician_id, committee_id, joining_date) VALUES (?, ?, CURDATE())');
         if (!$stmt) {
             throw new Exception('Error preparing statement');
         }
         
-        $stmt->bind_param('i', $committeId);
+        $stmt->bind_param('ii', $politicianId, $committeId);
         
         if (!$stmt->execute()) {
             throw new Exception('Something broke while executing query');
