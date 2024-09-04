@@ -43,10 +43,19 @@ header {
   align-items: center;
 }
 
+.godlo img{
+  width: 80px;
+  height: 80px;
+  float: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .title{
-    width: 80%;
+    width: 100%;
     text-align: left;
-    margin-left: 2%;
 }
 
 .login img {
