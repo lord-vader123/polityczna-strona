@@ -49,14 +49,11 @@ header {
     margin-left: 2%;
 }
 
-.login{
-  width: 20%;
-}
-
 .login img {
-border-radius: 25px;
-width: 75px;
-height: 75px;
+  border-radius: 25px;
+  width: 35px;
+  height: 35px;
+  margin-top: 15%;  
 }
 
 .menu{
@@ -69,8 +66,9 @@ height: 75px;
 
 .navbar{    /* Tło paska */
   width: 100%;
-    overflow: hidden;
-    background-color: #333;
+  overflow: hidden;
+  background-color: #333;
+  height: 46px;
 }
 
 .navbar a {     /* Format tekstu w pasku */
