@@ -58,11 +58,19 @@ header {
     text-align: left;
 }
 
+.login .dropdown{
+  float: right; 
+  margin-right: 2%; 
+  direction:rtl;
+  padding-left: 20px;
+}
+
 .login img {
   border-radius: 25px;
   width: 35px;
   height: 35px;
-  margin-top: 15%;  
+  margin-top: 15%;
+  text-align: center;
 }
 
 .menu{

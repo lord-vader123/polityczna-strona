@@ -23,6 +23,9 @@ session_start();
     <label for="passphrase">Hasło</label>
     <input type="password" name="passphrase">
     <button type="submit">Zaloguj się</button>
+    <br>
+    <a>Nie posiadasz konta? Zarejestruj się już teraz!</a><br>
+    <a style="text-align: center;"href="registration.php">Dołącz</a>
     </form>
 
     <?php

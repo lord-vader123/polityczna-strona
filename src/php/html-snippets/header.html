@@ -6,7 +6,7 @@
 
       
       <div class="godlo">
-        <img src="assets/img/poland.png">
+        <img src="/assets/img/poland.png">
       </div>
 
     </div>
@@ -24,8 +24,16 @@
         </div>
       </div>
 
+      <div class="dropdown">
+        <button class="dropbtn">Narzędzia<i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-content">
+          <a onclick="notLogged()">Dodaj partie</a>
+          <a onclick="notLogged()">Dodaj polityka</a>
+        </div>
+      </div> 
+
       <div class="login">
-        <div class="dropdown" style="float: right; margin-right: 10%; margin-left: 10%">
+        <div class="dropdown">
           <img src="/assets/img/ikona.ico">
             <div class="dropdown-content">
               <a href="/php/login.php">Zaloguj się</a>
@@ -33,6 +41,8 @@
             </div>
           </div>
       </div>
+
+      <script src="./js/log-alert.js"></script>
       
       <!--
       <div class="dropdown" style="float: right; margin-right: 7%;">
