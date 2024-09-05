@@ -1,6 +1,7 @@
 const noneSelectedError = "Wszystkie pola muszą być wypełnione";
 const tooLittleLettersError = "Hasło musi mieć co najmniej 8 znaków";
 const weakPasswordError = "Hasło musi mieć przynajmniej jedną dużą, małą literę i znak specjalny";
+const diffrentPasswordError = "Hasła się nie zgadzają";
 
 function isAllSelected(array) {
     const error = document.getElementById('error');
@@ -37,11 +38,20 @@ function isValidPassword(password) {
     }
 }
 
+function isEqual(password1, password2) {
+    if (password1.trim() !== password2.trim()) {
+        error.innerHTML = diffrentPasswordError;
+        return false;
+    }
+    return true;
+}
+
 function isValid() {
     const inputs = document.querySelectorAll('input');
-    const passwordField = document.getElementsByName('passphrase')[0].value;
+    const passwordField = document.getElementById('passphrase').value;
+    const passwordField2 = document.getElementById('passphrase2').value;
 
-    return isAllSelected(inputs) && isValidPassword(passwordField);
+    return isAllSelected(inputs) && isValidPassword(passwordField) && isEqual(passwordField, passwordField2);
 }
 
 document.getElementById('form').addEventListener('submit', (event) => {

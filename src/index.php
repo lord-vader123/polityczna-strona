@@ -1,7 +1,11 @@
 <?php
-if (isset($_COOKIE['id'])) {
-  session_start();
-  $_SESSION['id'] = $_COOKIE['id'];
+session_start();
+include_once __DIR__ . '/php/scripts/login-mysql.php';
+include_once __DIR__ . '/php/objects/User.php';
+
+$id = User::getUserIdByWhatever($conn);
+if ($id) {
+  echo $id;
   header('Location: /dashboard.php');
   exit();
 }

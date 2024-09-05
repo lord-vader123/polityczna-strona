@@ -1,8 +1,12 @@
 <?php
 include __DIR__ . '/scripts/login-mysql.php';
 include __DIR__ . '/objects/User.php';
-User::isCoockieSet();
-$user = new User($conn, $_COOKIE['id']);
+$id = User::getUserIdByWhatever($conn);
+if (!$id) {
+    header('Location: /index.php');
+    exit();
+}
+$user = new User($conn, $id);
 $userData = $user->getDataArray();
 ?>
 <!DOCTYPE html>
@@ -16,7 +20,7 @@ $userData = $user->getDataArray();
 </head>
 <body>
 
-<?php include_once __DIR__ . '/php/html-snippets/header-logged.html'; ?>
+<?php include_once __DIR__ . '/html-snippets/header-logged.html'; ?>
 
 <div class="content">
 

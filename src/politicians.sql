@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2024 at 05:32 PM
+-- Generation Time: Wrz 02, 2024 at 08:05 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `comittee`
+-- Struktura tabeli dla tabeli `committee`
 --
 
-CREATE TABLE `comittee` (
+CREATE TABLE `committee` (
   `id` int(11) NOT NULL,
   `name` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -35,12 +35,13 @@ CREATE TABLE `comittee` (
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `comittee_membership`
+-- Struktura tabeli dla tabeli `committee_membership`
 --
 
-CREATE TABLE `comittee_membership` (
+CREATE TABLE `committee_membership` (
   `id` int(11) NOT NULL,
-  `comitette_id` int(11) DEFAULT NULL,
+  `politician_id` int(11) DEFAULT NULL,
+  `committee_id` int(11) DEFAULT NULL,
   `joining_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -65,6 +66,7 @@ CREATE TABLE `party` (
 
 CREATE TABLE `party_affiliation` (
   `id` int(11) NOT NULL,
+  `politician_id` int(11) DEFAULT NULL,
   `party_id` int(11) DEFAULT NULL,
   `joining_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -79,8 +81,6 @@ CREATE TABLE `politicians` (
   `id` int(11) NOT NULL,
   `politician_name` varchar(20) DEFAULT NULL,
   `politician_surname` varchar(30) DEFAULT NULL,
-  `party_affiliation` int(11) DEFAULT NULL,
-  `committee_membership` int(11) DEFAULT NULL,
   `is_representative` tinyint(1) DEFAULT NULL,
   `creator` int(11) DEFAULT NULL,
   `portrait` varchar(50) DEFAULT NULL
@@ -105,17 +105,18 @@ CREATE TABLE `users` (
 --
 
 --
--- Indeksy dla tabeli `comittee`
+-- Indeksy dla tabeli `committee`
 --
-ALTER TABLE `comittee`
+ALTER TABLE `committee`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeksy dla tabeli `comittee_membership`
+-- Indeksy dla tabeli `committee_membership`
 --
-ALTER TABLE `comittee_membership`
+ALTER TABLE `committee_membership`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `comitette_id` (`comitette_id`);
+  ADD KEY `committee_id` (`committee_id`),
+  ADD KEY `politician_id` (`politician_id`);
 
 --
 -- Indeksy dla tabeli `party`
@@ -128,15 +129,14 @@ ALTER TABLE `party`
 --
 ALTER TABLE `party_affiliation`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `party_id` (`party_id`);
+  ADD KEY `party_id` (`party_id`),
+  ADD KEY `politician_id` (`politician_id`);
 
 --
 -- Indeksy dla tabeli `politicians`
 --
 ALTER TABLE `politicians`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `party_affiliation` (`party_affiliation`),
-  ADD KEY `committee_membership` (`committee_membership`),
   ADD KEY `creator` (`creator`);
 
 --
@@ -151,15 +151,15 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `comittee`
+-- AUTO_INCREMENT for table `committee`
 --
-ALTER TABLE `comittee`
+ALTER TABLE `committee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `comittee_membership`
+-- AUTO_INCREMENT for table `committee_membership`
 --
-ALTER TABLE `comittee_membership`
+ALTER TABLE `committee_membership`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -184,34 +184,33 @@ ALTER TABLE `politicians`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `comittee_membership`
+-- Constraints for table `committee_membership`
 --
-ALTER TABLE `comittee_membership`
-  ADD CONSTRAINT `comittee_membership_ibfk_1` FOREIGN KEY (`comitette_id`) REFERENCES `comittee` (`id`);
+ALTER TABLE `committee_membership`
+  ADD CONSTRAINT `committee_membership_ibfk_1` FOREIGN KEY (`committee_id`) REFERENCES `committee` (`id`),
+  ADD CONSTRAINT `committee_membership_ibfk_2` FOREIGN KEY (`politician_id`) REFERENCES `politicians` (`id`);
 
 --
 -- Constraints for table `party_affiliation`
 --
 ALTER TABLE `party_affiliation`
-  ADD CONSTRAINT `party_affiliation_ibfk_1` FOREIGN KEY (`party_id`) REFERENCES `party` (`id`);
+  ADD CONSTRAINT `party_affiliation_ibfk_1` FOREIGN KEY (`party_id`) REFERENCES `party` (`id`),
+  ADD CONSTRAINT `party_affiliation_ibfk_2` FOREIGN KEY (`politician_id`) REFERENCES `politicians` (`id`);
 
 --
 -- Constraints for table `politicians`
 --
 ALTER TABLE `politicians`
-  ADD CONSTRAINT `politicians_ibfk_1` FOREIGN KEY (`party_affiliation`) REFERENCES `party_affiliation` (`id`),
-  ADD CONSTRAINT `politicians_ibfk_2` FOREIGN KEY (`committee_membership`) REFERENCES `comittee_membership` (`id`),
-  ADD CONSTRAINT `politicians_ibfk_3` FOREIGN KEY (`creator`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `politicians_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
