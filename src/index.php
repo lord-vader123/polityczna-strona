@@ -31,10 +31,9 @@ if ($id) {
   <p>Aktualna ilość partii: </p>
   <p>Aktualna ilość okręgów wyborczych: </p>
   <p>Aktualna ilość polityków: </p>
-
   </div>
-  
 
+<?php include_once __DIR__ . '/php/html-snippets/cookie-alert.html'; ?>
 </body>
 
 </html>

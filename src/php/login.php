@@ -29,6 +29,9 @@ session_start();
     <label for="coockies">Nie wylogowuj mnie</label>
     <input type="checkbox" name="coockies" id="coockies">
     <button type="submit">Zaloguj się</button>
+    <br>
+    <a>Nie posiadasz konta? Zarejestruj się już teraz!</a><br>
+    <a style="text-align: center;"href="registration.php">Dołącz</a>
     </form>
 
     <?php
